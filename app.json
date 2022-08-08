@@ -1,0 +1,9 @@
+{
+  "name":"NavCS",
+  "description":"A tool for playing city-wide navigation based games",
+  "buildpacks":[
+    {
+      "url":"heroku/python"
+    }
+  ]
+}
