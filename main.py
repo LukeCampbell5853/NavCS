@@ -2,6 +2,7 @@ from flask import *
 from datetime import datetime,timedelta
 import database_manager as db_man
 import modes
+import os
 
 #Set up Flask app
 app = Flask(__name__, static_url_path='/static')
@@ -167,4 +168,5 @@ def update_state():
     return("!")
 
 if __name__ == '__main__':
-  app.run(debug = True, host = '0.0.0.0')
+  port = int(os.environ.get("PORT", 5000))
+  app.run(debug = True, port=port)
