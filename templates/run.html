@@ -1,0 +1,34 @@
+<!DOCTPE html>
+<html>
+  <head>
+    <title>NavCS - play</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+    <script src="{{url_for('static', filename='run.js')}}"></script>
+  </head>
+  <body>
+    <h1>NavCS</h1>
+    <h4>mk. 1</h4>
+    <div id="map" src="" style="width:95vw;height:50vw;"></div>
+    <script>
+      console.log("initialising")
+      var map = L.map('map').setView([0, 0], 17);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+      }).addTo(map);
+      var markers = L.layerGroup().addTo(map);
+      
+      update();
+      clear_map();
+      
+      function remake_map() {
+        console.log("running");
+        clear_map();
+        update();
+      }
+      
+      setInterval(remake_map, 10000);
+    </script>
+  </body>
+</html>

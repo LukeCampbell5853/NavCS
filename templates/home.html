@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NavCS - home</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+    <script src="{{url_for('static', filename='location.js')}}"></script>
+  </head>
+    
+  <body onload="getLocation()">
+    <h1>NavCS</h1>
+    <h4>mk. 1</h4>
+    <a href="/run">Go to game to test>></a>
+    <p>Please check if your GPS is working accurately by reading the map below and verifying it shows your location. If it does not please do not join, as you can imagine it would make gameplay difficult for your teammates if your GPS says you are somewhere you are not.</p>
+    <a href="/create">Book a game>></a><br><br>
+    <a id="cont_link" href="/join">next (no geo)>></a><br><br>
+    <p id="coordinates">location: </p>
+    <div id="map" src="" style="width:95vw;height:50vw;"></div>
+    <form action="/admin_test" method="POST">
+      <input type="submit" value="admin">
+    </form>
+  </body>
+</html>
