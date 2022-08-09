@@ -10,7 +10,7 @@ app = Flask(__name__, static_url_path='/static')
 #Start page
 @app.route("/")
 
-def home():
+def index():
   db = db_man.init_SQL()
   db_man.confirm_tables(db)
   ip = request.remote_addr
