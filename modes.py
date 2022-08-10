@@ -20,7 +20,8 @@ class HideAndSeek:
   def assigned(self):
     result = False
     for player in self.players:
-      if player["target"] != "":
+      print(player)
+      if player["target"] != "-":
         result = True
         break
     return(result)
