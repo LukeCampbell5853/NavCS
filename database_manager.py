@@ -212,7 +212,7 @@ def get_players(package,code):
 def update_targets(package,ip,targets):
   c,con = package
   c.execute("SELECT * FROM players WHERE ip=?",(ip,))
-  ip,name,start,game,target,location,score,last_contact = c.fetchone()
+  ip,name,game,target,location,score,last_contact = c.fetchone()
   target = targets
   c.execute("DELETE FROM players WHERE ip=?",(ip,))
   C.execute("INSERT INTO players (ip,name,game,target,location,score,last_contact) VALUES(?,?,?,?,?,?,?)",(ip,name,game,target,location,score,last_contact))
