@@ -194,9 +194,9 @@ def get_code(package,ip):
   print("getting code")
   c,con = package
   c.execute("SELECT game FROM players WHERE ip=?",(ip,))
-  print("code (V)")
-  print(c.fetchone()[0])
-  return(c.fetchone()[0])
+  code = c.fetchone()[0]
+  print("code: " + code)
+  return(code)
 
 def get_mode(package,code):
   c,con = package
