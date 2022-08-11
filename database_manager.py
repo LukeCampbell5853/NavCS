@@ -194,9 +194,12 @@ def get_code(package,ip):
   print("getting code")
   c,con = package
   c.execute("SELECT game FROM players WHERE ip=?",(ip,))
-  print("data v")
-  print(c.fetchone()[0])
-  code = c.fetchone()[0]
+  try:
+    code = c.fetchone()[0]
+    print("mode got from c.fetchone() by index selection")
+  except:
+    code = c.fetchone()
+    print("mode got from c.fetchone() without index selection")
   print("code: " + code)
   return(code)
 
