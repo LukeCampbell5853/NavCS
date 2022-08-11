@@ -200,7 +200,8 @@ def get_code(package,ip):
   except:
     code = c.fetchone()
     print("mode got from c.fetchone() without index selection")
-  print("code: " + code)
+  print("code v")
+  print(code)
   return(code)
 
 def get_mode(package,code):
