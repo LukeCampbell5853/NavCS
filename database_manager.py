@@ -4,6 +4,7 @@ import sqlite3
 from random import randint as r
 
 def time_string(s,m,h,D,M,Y):
+  print("+++RUNNING time_string+++")
   v = []
   for i in [D,M,Y,h,m,s]:
     if i == Y:
@@ -20,6 +21,7 @@ def time_object(s,m,h,D,M,Y):
 #(ip,name,game,target,location,score)
 class player:
   def __init__(self,ip,name,code):
+    print("+++RUNNING player __init__+++")
     self.ip = ip
     self.name = name
     self.code = code
@@ -27,6 +29,7 @@ class player:
     self.update = dt.now().strftime("%d/%m/%Y %H:%M:%S")
   
   def register(self,package):
+    print("+++RUNNING player register+++")
     c,con = package
     data = (self.ip,self.name,self.code,"-","-",0,self.update)
     print("data:",data)
@@ -34,22 +37,26 @@ class player:
 
 class game:
   def __init__(self,start,duration,code,mode):
+    print("+++RUNNING game __init__+++")
     self.duration = round(duration,3)
     self.code = code
     self.mode = mode
     self.start = start
 
   def register(self,package):
+    print("+++RUNNING game register+++")
     c,con = package
     data = (self.start,self.duration,self.code,self.mode)
     c.execute("INSERT INTO games (start,duration,code,mode) VALUES(?,?,?,?)",data)
 
 def init_SQL():
+  print("+++RUNNING init_SQL()+++")
   con = sqlite3.connect("NavCS_database.db")
   c = con.cursor()
   return((c,con))
   
 def confirm_tables(package):
+  print("+++RUNNING confirm_tables+++")
   c,con = package
   #Ensure table [locations] exists
   c.execute("SELECT count(name) FROM sqlite_master WHERE type='table' AND name='players'")
@@ -62,6 +69,7 @@ def confirm_tables(package):
   	con.execute("CREATE TABLE games (start,duration, code,mode)")
 
 def game_running(package,code):
+  print("+++RUNNING game_running+++")
   c,con = package
   game_exists = False
   game_started = False
@@ -92,6 +100,7 @@ def game_running(package,code):
     return(False)  
 
 def get_game(package,code):
+  print("+++RUNNING get_game+++")
   c,con = package
   c.execute("SELECT * FROM games WHERE code=?",(code,))
   data = c.fetchone()
@@ -99,6 +108,7 @@ def get_game(package,code):
   return(object)
   
 def reset_games(package):
+  print("+++RUNNING reset_games+++")
   c,con=package
   c.execute("DROP TABLE games")
   con.execute("CREATE TABLE games (start,duration, code,mode)")
