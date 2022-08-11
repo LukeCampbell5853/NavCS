@@ -4,7 +4,7 @@ from random import randint as r
 
 class HideAndSeek:
   def __init__(self,ip):
-    print("Initialisng game class")
+    print("+++RUNNING HideAndSeek __init__+++")
     db = db_man.init_SQL()
     self.code = db_man.get_code(db,ip)
     self.ip = ip
@@ -20,6 +20,7 @@ class HideAndSeek:
       self.players[player[0]] = data
 
   def assigned(self):
+    print("+++RUNNING HideAndSeek assigned+++")
     result = False
     for player in self.players:
       print(player)
@@ -29,6 +30,7 @@ class HideAndSeek:
     return(result)
 
   def assign_targets(self):
+    print("+++RUNNING HideAndSeek assign_targets+++")
     all_players = list(self.players.keys())
     seeker = all_players[r(0,len(all_players)-1)]
     hiders = all_players
