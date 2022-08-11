@@ -141,6 +141,7 @@ def update_state():
   print("in game:", game)
   print("at lat:", lat)
   print("at long:", long)
+  db_man.get_player_data(db,ip)
   loc_string = str(lat)+","+str(long)
   game_state = db_man.game_running(db,game)
   
