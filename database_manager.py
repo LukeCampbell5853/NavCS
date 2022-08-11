@@ -133,7 +133,10 @@ def get_codes(package):
   c.execute("SELECT code FROM games")
   data = []
   for i in c.fetchall():
-    data.append(i)
+    try:
+      data.append(i[0])
+    except:
+      data.append(i)
   return(data)
 
 def ip_already_in(package,ip):  
