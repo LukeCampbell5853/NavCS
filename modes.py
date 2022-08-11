@@ -4,12 +4,14 @@ from random import randint as r
 
 class HideAndSeek:
   def __init__(self,ip):
+    print("Initialisng game class")
     db = db_man.init_SQL()
     self.code = db_man.get_code(db,ip)
     self.ip = ip
     self.players = {}
-    db = db_man.init_SQL()
+    print(self.code)
     for player in db_man.get_players(db,self.code):
+      print(player)
       data = {}
       data["name"] = player[1]
       data["target"] = player[2]
