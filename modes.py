@@ -18,6 +18,7 @@ class HideAndSeek:
       data["location"] = player[3]
       data["score"] = player[4]
       self.players[player[0]] = data
+  print("---END FUNCTION---")
 
   def assigned(self):
     print("+++RUNNING HideAndSeek assigned+++")
@@ -27,6 +28,7 @@ class HideAndSeek:
       if player["target"] != "-":
         result = True
         break
+    print("---END FUNCTION---")
     return(result)
 
   def assign_targets(self):
@@ -38,3 +40,4 @@ class HideAndSeek:
     self.players[seeker][target] = hiders
     db = db_man.init_SQL()
     db_man.update_targets(db,seeker,hiders)
+    print("---END FUNCTION---")
