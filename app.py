@@ -94,28 +94,28 @@ def create():
 @app.route("/submit_application", methods=["POST","GET"])
 
 def submit_application():
-  try:
-    data = request.data
-    time,date,timeadj,hours,minutes,mode = str(data).strip("b").strip("'").split(",")
-    H,M = [int(x) for x in time.split(":")]
-    y,m,d = [int(x) for x in date.split("-")]
-    start = db_man.time_object(0,M,H,d,m,y) + timedelta(minutes = int(timeadj))
-    start_str = datetime.strftime(start,"%d/%m/%Y %H:%M:%S")
-    duration = int(hours) + int(minutes)/60
-    code = db_man.generate_code()
-    if db_man.is_before(datetime.now(),start):
-      db = db_man.init_SQL()
-      db_man.confirm_tables(db)
-      game = db_man.game(start_str,duration,code,mode)
-      game.register(db)
-      db_man.save(db)
-      return(code)
+  #try:
+  data = request.data
+  time,date,timeadj,hours,minutes,mode = str(data).strip("b").strip("'").split(",")
+  H,M = [int(x) for x in time.split(":")]
+  y,m,d = [int(x) for x in date.split("-")]
+  start = db_man.time_object(0,M,H,d,m,y) + timedelta(minutes = int(timeadj))
+  start_str = datetime.strftime(start,"%d/%m/%Y %H:%M:%S")
+  duration = int(hours) + int(minutes)/60
+  code = db_man.generate_code()
+  if db_man.is_before(datetime.now(),start):
+    db = db_man.init_SQL()
+    db_man.confirm_tables(db)
+    game = db_man.game(start_str,duration,code,mode)
+    game.register(db)
+    db_man.save(db)
+    return(code)
     else:
       print("date/time error")
       return("!")
-  except:
-    print("unknown error")
-    return("error")
+  #except:
+  #  print("unknown error")
+  #  return("error")
 
 @app.route("/admin_test",methods=["POST","GET"])
 
