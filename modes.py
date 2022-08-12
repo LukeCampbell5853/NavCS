@@ -39,7 +39,7 @@ class HideAndSeek:
     seeker = all_players[r(0,len(all_players)-1)]
     hiders = all_players
     hiders.remove(seeker)
-    self.players[seeker][target] = hiders
+    self.players[seeker]["target"] = hiders
     db = db_man.init_SQL()
     db_man.update_targets(db,seeker,hiders)
     print("---END FUNCTION---")
