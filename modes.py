@@ -27,7 +27,7 @@ class HideAndSeek:
       print("printing player [v]")
       print(player)
       print(data)
-      if player["target"] != "-":
+      if data["target"] != "-":
         result = True
         break
     print("---END FUNCTION---")
