@@ -23,9 +23,10 @@ class HideAndSeek:
   def assigned(self):
     print("+++RUNNING HideAndSeek assigned+++")
     result = False
-    for player in self.players:
+    for player,data in self.players.items():
       print("printing player [v]")
       print(player)
+      print(data)
       if player["target"] != "-":
         result = True
         break
