@@ -11,6 +11,7 @@ def time_string(s,m,h,D,M,Y):
       v.append(str(i).zfill(4))
     else:
       v.append(str(i).zfill(2))
+  print("---END FUNCTION---")
   return(f"{v[0]}/{v[1]}/{v[2]} {v[3]}:{v[4]}:{v[5]}")
 
 def time_object(s,m,h,D,M,Y):
@@ -114,11 +115,13 @@ def reset_games(package):
   con.execute("CREATE TABLE games (start,duration, code,mode)")
 
 def reset_players(package):
+  print("+++RUNNING reset_players+++")
   c,con=package
   c.execute("DROP TABLE players")
   con.execute("CREATE TABLE players (ip,name,start,game,target,location,score,last_contact)")
 
 def save(package):
+  print("+++RUNNING save+++")
   c,con = package
   con.commit()
   con.close()
