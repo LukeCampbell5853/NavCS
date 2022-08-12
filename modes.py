@@ -24,6 +24,7 @@ class HideAndSeek:
     print("+++RUNNING HideAndSeek assigned+++")
     result = False
     for player in self.players:
+      print("printing player [v]")
       print(player)
       if player["target"] != "-":
         result = True
