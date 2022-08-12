@@ -110,9 +110,9 @@ def submit_application():
     game.register(db)
     db_man.save(db)
     return(code)
-    else:
-      print("date/time error")
-      return("!")
+  else:
+    print("date/time error")
+    return("!")
   #except:
   #  print("unknown error")
   #  return("error")
