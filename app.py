@@ -18,7 +18,10 @@ def index():
   print("loading home page")
   if db_man.scan_needed():
     print("scan due")
-    db_man.maintain_db(db)
+    try:
+      db_man.maintain_db(db)
+    except:
+      print("scan failed")
   db_man.save(db)
   #else:
   #  print("no need to scan")
