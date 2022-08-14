@@ -49,6 +49,6 @@ class HideAndSeek:
     db = db_man.init_SQL()
     print("updating data [v]")
     print(self.players[seeker])
-    db_man.update_targets(db,self.players[seeker],hiders)
+    db_man.update_targets(db,seeker,hiders)
     db_man.save(db)
     print("---END FUNCTION---")
