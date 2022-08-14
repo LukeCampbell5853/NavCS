@@ -62,6 +62,10 @@ def init_SQL():
   c = con.cursor()
   return((c,con))
   print("---END FUNCTION---")
+
+def end_query(package):
+  c,con = package
+  c.close()
   
 def confirm_tables(package):
   print("+++RUNNING confirm_tables+++")
