@@ -152,6 +152,7 @@ def update_state():
       print("game running")
       db_man.update_location(db,ip,loc_string)
       db_man.save(db)
+      db = db_man.init_SQL()
       if db_man.get_mode(db,game) == "HS_2":
         print("running hide and seek game")
         program = modes.HideAndSeek(ip)
