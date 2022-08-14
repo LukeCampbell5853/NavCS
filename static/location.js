@@ -2,7 +2,7 @@ function getLocation() {
   if (confirm("Cookies are needed to play this game, if you don't wish to allow cookies press 'cancel', you wont be able to play but you can still read about and book games") == false){
     console.log("Cookies not allowed");
     const link = document.getElementById("cont_link");
-    link.remove();
+    link.parentNode.removeChild(link);
   }
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
