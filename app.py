@@ -13,7 +13,7 @@ app = Flask(__name__, static_url_path='/static')
 def index():
   db = db_man.init_SQL()
   db_man.confirm_tables(db)
-  ip = request.remote_addr
+  ip = request.environ['REMOTE_ADDR']
   print("ip:",ip)
   print("loading home page")
   if db_man.scan_needed():
@@ -50,7 +50,7 @@ def connect():
       info[key] = request.form[key]
   
     #Collect additional info
-    ip = request.remote_addr
+    ip = request.environ['REMOTE_ADDR']
     info["ip"] = ip
     code = info["game_code"]
     
@@ -139,7 +139,7 @@ def run():
 def update_state():
   lat,long = [float(x) for x in str(request.data).strip("b").strip("'").split(",")]
   db = db_man.init_SQL()
-  ip = request.remote_addr
+  ip = request.environ['REMOTE_ADDR']
   game = db_man.get_code(db,ip)
   print("user at:", ip)
   print("in game:", game)
