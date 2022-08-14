@@ -16,10 +16,9 @@ def index():
   ip = request.remote_addr
   print("ip:",ip)
   print("loading home page")
-  #if db_man.scan_needed():
-  print("scan due")
-  db = db_man.init_SQL()
-  db_man.maintain_db(db)
+  if db_man.scan_needed():
+    print("scan due")
+    db_man.maintain_db(db)
   db_man.save(db)
   #else:
   #  print("no need to scan")
