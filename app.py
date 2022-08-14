@@ -68,6 +68,7 @@ def connect():
           success = True
       else:
         error = "Invalid code."
+    db_man.end_query(db)
   except:
     error="An unknown error occured."
   if not success:
@@ -122,6 +123,7 @@ def admin_test():
   db = db_man.init_SQL()
   print(db_man.get_codes(db))
   db_man.all_players(db)
+  db_man.end_query(db)
   return(render_template("home.html"))
 
 @app.route("/run")
@@ -163,8 +165,10 @@ def update_state():
       return(loc_string)
     else:
       print("game not running rn")
+      db_man.end_query(db)
       return("!")
   else:
+    db_man.end_query(db)
     return("!")
 
 if __name__ == '__main__':
