@@ -145,19 +145,19 @@ def update_state():
   print("in game:", game)
   print("at lat:", lat)
   print("at long:", long)
-  db_man.get_player_data(db,ip)
   loc_string = str(lat)+","+str(long)
   game_state = db_man.game_running(db,game)
-  
   if game_state:
     if game_state[0] and not game_state[1]:
       print("game running")
       db_man.update_location(db,ip,loc_string)
+      db_man.save(db)
       if db_man.get_mode(db,game) == "HS_2":
         print("running hide and seek game")
         program = modes.HideAndSeek(ip)
       else:
         print("unknown game mode")
+        print(db_man.get_mode(db,game))
       print(program.players)
       if program.assigned():
         print("targets already assigned")
