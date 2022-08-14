@@ -19,5 +19,13 @@
     <form action="/admin_test" method="POST">
       <input type="submit" value="admin">
     </form>
+    <script>
+      navigator.geolocation.getCurrentPosition(
+        function(position) { alert(position.coords.latitude, position.coords.longitude);
+        },
+        function(error){ alert(error.message);
+        }, { enableHighAccuracy: true ,timeout : 5000
+        } );
+    </script>
   </body>
 </html>
