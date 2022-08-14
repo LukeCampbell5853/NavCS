@@ -18,7 +18,8 @@ class HideAndSeek:
       data["location"] = player[3]
       data["score"] = player[4]
       self.players[player[0]] = data
-  print("---END FUNCTION---")
+    db_man.end_query(db)
+    print("---END FUNCTION---")
 
   def assigned(self):
     print("+++RUNNING HideAndSeek assigned+++")
