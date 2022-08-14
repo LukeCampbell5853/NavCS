@@ -1,6 +1,6 @@
 function getLocation() {
   if (confirm("Cookies are needed to play this game, if you don't wish to allow cookies press 'cancel', you wont be able to play but you can still read about and book games") == false){
-    console.log("Cookies not allowed
+    console.log("Cookies not allowed")
     document.getElementById("cont_link").remove();
   }
   if (navigator.geolocation) {
