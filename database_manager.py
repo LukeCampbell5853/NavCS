@@ -275,6 +275,12 @@ def get_players(package,code):
 #(ip,name,start,game,target,location,score,last_contact)
 def update_targets(package,ip,targets):
   print("+++RUNNING update_targets+++")
+  
+  target_string = ""
+  for target in targets:
+    target_string += target + ";"
+  targets = target_string[:-1]
+  
   print("ip to update [v]")
   print(ip)
   print("targets to add [v]")
