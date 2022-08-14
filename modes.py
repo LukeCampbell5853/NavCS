@@ -36,9 +36,15 @@ class HideAndSeek:
   def assign_targets(self):
     print("+++RUNNING HideAndSeek assign_targets+++")
     all_players = list(self.players.keys())
+    print("ALL PLAYERS [v]")
+    print(all_players)
     seeker = all_players[r(0,len(all_players)-1)]
+    print("SEEKER [v]")
+    print(seeker)
     hiders = all_players
     hiders.remove(seeker)
+    print("HIDERS [v]")
+    print(hiders)
     self.players[seeker]["target"] = hiders
     db = db_man.init_SQL()
     print("updating data [v]")
