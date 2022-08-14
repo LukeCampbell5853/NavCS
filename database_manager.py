@@ -244,7 +244,8 @@ def all_players(package):
 
 def get_code(package,ip):
   print("+++RUNNING get_code+++")
-  print("getting code")
+  print("getting code of player at [v]")
+  print(ip)
   c,con = package
   c.execute("SELECT game FROM players WHERE ip=?",(ip,))
   try:
