@@ -1,13 +1,12 @@
 function getLocation() {
   if (confirm("Cookies are needed to play this game, if you don't wish to allow cookies press 'cancel', you wont be able to play but you can still read about and book games") == false){
-    console.log("Cookies not allowed");
-    const link = document.getElementById("cont_link");
-    link.parentNode.removeChild(link);
-  }
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
-  } else { 
-    document.getElementById("coordinates").innerHTML = "Geolocation is not supported by this browser.";
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else { 
+      document.getElementById("coordinates").innerHTML = "Geolocation is not supported by this browser.";
+    }
+  } else{
+    document.getElementById("coordinates").innerHTML = "Cookies are required to join games, however you may create a game without them.";
   }
 }
 
