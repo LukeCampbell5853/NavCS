@@ -20,7 +20,7 @@ function join(){
         console.log("an unknown error occured")
       }
       else {
-        console.log("user logged with id: " resp)
+        console.log("user logged with id: " + resp)
       }
     }
   }
