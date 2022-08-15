@@ -40,7 +40,7 @@ def join():
 def connect():
   success = False
   error = ""
-  print(request.get_json())
+  print(request.json)
   try:
     #Collect all the form info
     keys = []
