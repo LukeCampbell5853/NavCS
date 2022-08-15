@@ -40,7 +40,6 @@ def connect2():
   print("RUNNING CONNECT2")
   name,code = str(request.data).strip("b").strip("'").split(",")
   id = db_man.generate_code();
-  ip = request.remote_addr
   
   success = False
   error = "[unknown error]"
@@ -64,7 +63,7 @@ def connect2():
   db_man.end_query(db)
   
   if not success:
-    print("error - reloading")
+    print("error, sending details")
     return(error)
   else:
     player = db_man.player(id,name,code)
@@ -72,7 +71,7 @@ def connect2():
     player.register(db)
     db_man.save(db)
     print("registered player")
-    return(render_template(id))
+    return(id)
 
 #Submission of join form
 @app.route("/connect", methods=["POST","GET"])
