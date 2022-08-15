@@ -13,8 +13,6 @@ app = Flask(__name__, static_url_path='/static')
 def index():
   db = db_man.init_SQL()
   db_man.confirm_tables(db)
-  ip = request.environ['REMOTE_ADDR']
-  print("ip:",ip)
   print("loading home page")
   if db_man.scan_needed():
     print("scan due")
@@ -76,7 +74,7 @@ def connect2():
 
 #Submission of join form
 @app.route("/connect", methods=["POST","GET"])
-
+"""
 def connect():
   success = False
   error = ""
@@ -129,7 +127,7 @@ def connect():
     db_man.save(db)
     print("registered player")
     return(render_template("run.html"))
-
+"""
 @app.route("/create")
 
 def create():
@@ -178,11 +176,10 @@ def run():
 @app.route("/update_state", methods=["POST","GET"])
 
 def update_state():
-  lat,long = [float(x) for x in str(request.data).strip("b").strip("'").split(",")]
+  lat,long,id = [float(x) for x in str(request.data).strip("b").strip("'").split(",")]
   db = db_man.init_SQL()
-  ip = request.environ['REMOTE_ADDR']
-  game = db_man.get_code(db,ip)
-  print("user at:", ip)
+  game = db_man.get_code(db,id)
+  print("user id:", id)
   print("in game:", game)
   print("at lat:", lat)
   print("at long:", long)
@@ -191,12 +188,12 @@ def update_state():
   if game_state:
     if game_state[0] and not game_state[1]:
       print("game running")
-      db_man.update_location(db,ip,loc_string)
+      db_man.update_location(db,id,loc_string)
       db_man.save(db)
       db = db_man.init_SQL()
       if db_man.get_mode(db,game) == "HS_2":
         print("running hide and seek game")
-        program = modes.HideAndSeek(ip)
+        program = modes.HideAndSeek(id)
       else:
         print("unknown game mode")
         print(db_man.get_mode(db,game))
