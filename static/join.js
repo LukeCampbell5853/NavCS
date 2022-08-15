@@ -9,20 +9,23 @@ function join(){
   req.open("POST","/connect2");
   req.onreadystatechange = function(res){
     if (req.readyState == 4 && req.status == 200){
-      var resp = req.responseText
+      var resp = req.responseText;
       if (resp == "[invalid code]"){
-        console.log("invalid code")
+        console.log("invalid code");
       }
       else if (resp == "[game started]"){
-        console.log("game already started")
+        console.log("game already started");
       }
       else if (resp == "[error]"){
-        console.log("an unknown error occured")
+        console.log("an unknown error occured");
       }
       else {
-        console.log("user logged with id: " + resp)
+        console.log("user logged with id: " + resp);
+        document.cookies("id:"+resp);
+        alert("player id is ["+resp+"] and has been stored");
+        location.href = "/run";
       }
     }
   }
-  req.send(data)
+  req.send(data);
 }
