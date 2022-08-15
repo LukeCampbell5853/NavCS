@@ -21,7 +21,7 @@ function join(){
       }
       else {
         console.log("user logged with id: " + resp);
-        document.cookies("id:"+resp);
+        document.cookies("id:"+resp";");
         alert("player id is ["+resp+"] and has been stored");
         location.href = "/run";
       }
