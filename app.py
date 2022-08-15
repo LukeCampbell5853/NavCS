@@ -34,15 +34,12 @@ def join():
   print("loading join page")
   return(render_template("join.html", message="Please enter your details to join a game:"))
 
-@app.route("/connect2",methods=["POST","GET"])
+@app.route("/connect2",methods=["POST"])
 
 def connect2():
-  print(request)
-  print("-")
-  print(request.json)
-  print("-")
-  print(request.data)
-  print("-")
+  data = requests.get_json()
+  print(data)
+  return("-")
 
 #Submission of join form
 @app.route("/connect", methods=["POST","GET"])
