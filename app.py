@@ -37,7 +37,7 @@ def join():
 @app.route("/connect2",methods=["POST"])
 
 def connect2():
-  data = requests.get_json()
+  data = request.get_json()
   print(data)
   return("-")
 
