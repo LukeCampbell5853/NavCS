@@ -38,7 +38,7 @@ def join():
 
 def connect2():
   print("RUNNING CONNECT2")
-  print(request)
+  print(request.data)
   print(">>")
   data = request.get_json()
   print(data)
