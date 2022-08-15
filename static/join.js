@@ -12,11 +12,14 @@ function join(){
       var resp = req.responseText
       if (resp == "[invalid code]"){
         console.log("invalid code")
-      } else if (resp == "[game started]"){
+      }
+      else if (resp == "[game started]"){
         console.log("game already started")
-      } else if (resp == "[error]){
+      }
+      else if (resp == "[error]){
         console.log("an unknown error occured")
-      } else {
+      }
+      else {
         console.log("user logged with id: " resp)
       }
     }
