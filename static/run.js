@@ -14,7 +14,7 @@ function communicate(position){
   
   let cookie = document.cookie
   let stage1 = cookie.split(":")[1]
-  let id = stage1.substr(0,stage1.length-2)
+  let id = stage1.substr(0,stage1.length)
   console.log(cookie)
   console.log(id)
   
