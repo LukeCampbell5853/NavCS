@@ -38,10 +38,9 @@ def join():
 
 def connect2():
   print("RUNNING CONNECT2")
-  print(request.data)
-  print(">>")
-  data = request.get_json()
-  print(data)
+  name,code = request.data.strip("'").strip("b").split(",")
+  print("name:",name)
+  print("code:",code)
   return("-")
 
 #Submission of join form
