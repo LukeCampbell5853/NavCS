@@ -8,21 +8,24 @@ function join(){
   }
   console.log(data)
   
+  const test_data_type = [name,code];
+  console.log(test_data_type)
+  
   const req = new XMLHttpRequest();
   req.open("POST","/connect2");
   req.onreadystatechange = function(res){
     if (req.readyState == 4 && req.status == 200){
-      var code = req.responseText
-      if (code == "[invalid code]"){
+      var resp = req.responseText
+      if (resp == "[invalid code]"){
         console.log("invalid code")
       }
-      else if (code == "[error]"){
+      else if (resp == "[error]"){
         console.log("An unknown error occured")
       }
       else {
-        console.log("game created with code: " + code)
+        console.log("game created with code: " + resp)
       }
     }
   }
-  req.send(data)
+  req.send(test_data_type)
 }
