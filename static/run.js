@@ -15,12 +15,11 @@ function communicate(position){
   let cookie = document.cookie
   let stage1 = cookie.split(":")[1]
   let id = stage1.substr(0,stage1.length)
-  console.log(cookie)
-  console.log(id)
+  console.log("id:",id)
   
   var lat = position.coords.latitude;
   var long = position.coords.longitude;
-  const data = [lat,long]
+  const data = [lat,long,id]
 
   const req = new XMLHttpRequest();
   req.open("POST","/update_state");
