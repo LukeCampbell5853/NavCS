@@ -7,4 +7,12 @@ function join(){
   console.log("name: " + name);
   console.log("code: " + code);
   console.log("player id: " + id);
+  document.cookie = "player_id:"+id;
+  
+  const data = {
+    "name":name,
+    "code":code,
+    "player_id":id
+  }
+  console.log(data)
 }
