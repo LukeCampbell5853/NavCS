@@ -55,17 +55,18 @@ def connect2():
     if started:
       print("game already started")
       error = "[game started]"
-      else:
-        print("game is good to go")
-        success = True
     else:
-      error = "[invalid code]"
+      print("game is good to go")
+      success = True
+  else:
+    error = "[invalid code]"
   db_man.end_query(db)
   
   if not success:
     print("error, sending details")
     return(error)
   else:
+    print("success, registering player")
     player = db_man.player(id,name,code)
     db = db_man.init_SQL()
     player.register(db)
