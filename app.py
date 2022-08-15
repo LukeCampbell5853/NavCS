@@ -74,7 +74,7 @@ def connect2():
 
 #Submission of join form
 @app.route("/connect", methods=["POST","GET"])
-"""
+
 def connect():
   success = False
   error = ""
@@ -127,7 +127,7 @@ def connect():
     db_man.save(db)
     print("registered player")
     return(render_template("run.html"))
-"""
+
 @app.route("/create")
 
 def create():
