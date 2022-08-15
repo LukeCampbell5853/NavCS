@@ -1,4 +1,7 @@
 function update() {
+  let cookie = document.cookie;
+  console.log("cookie [v]")
+  console.log(cookie)
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(communicate);
   } else { 
