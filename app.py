@@ -38,7 +38,7 @@ def join():
 
 def connect2():
   print("RUNNING CONNECT2")
-  name,code = request.data.strip("'").strip("b").split(",")
+  name,code = str(request.data).strip("'").strip("b").split(",")
   print("name:",name)
   print("code:",code)
   return("-")
