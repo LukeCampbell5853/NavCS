@@ -176,7 +176,8 @@ def run():
 @app.route("/update_state", methods=["POST","GET"])
 
 def update_state():
-  lat,long,id = [float(x) for x in str(request.data).strip("b").strip("'").split(",")]
+  lat,long,id = str(request.data).strip("b").strip("'").split(",")
+  lat,long = float(lat),float(long)
   db = db_man.init_SQL()
   game = db_man.get_code(db,id)
   print("user id:", id)
