@@ -38,10 +38,41 @@ def join():
 
 def connect2():
   print("RUNNING CONNECT2")
-  name,code = str(request.data).strip("'").strip("b").split(",")
+  name,code = str(request.data).strip("b").strip("'").split(",")
+  id = db_man.generate_code();
+  ip = request.remote_addr
+  
+  success = False
+  error = "[unknown error]"
+  
   print("name:",name)
   print("code:",code)
-  return("-")
+  print("id:",id)
+  
+  db = db_man.init_SQL()
+  game_state = db_man.game_running(db,code)
+  if game_state:
+    started,ended = game_state
+    if started:
+      print("game already started")
+      error = "[game started]"
+      else:
+        print("game is good to go")
+        success = True
+    else:
+      error = "[invalid code]"
+  db_man.end_query(db)
+  
+  if not success:
+    print("error - reloading")
+    return(error)
+  else:
+    player = db_man.player(id,name,code)
+    db = db_man.init_SQL()
+    player.register(db)
+    db_man.save(db)
+    print("registered player")
+    return(render_template(id))
 
 #Submission of join form
 @app.route("/connect", methods=["POST","GET"])
