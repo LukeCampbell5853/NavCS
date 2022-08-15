@@ -1,16 +1,21 @@
 function update() {
   let cookie = document.cookie;
-  console.log("cookie [v]")
-  console.log(cookie)
-  if (navigator.geolocation) {
+  if (navigator.geolocation && cookie != ""){
     navigator.geolocation.getCurrentPosition(communicate);
-  } else { 
+  } else if (navigator.geolocation) { 
     console.log("nav unavailable - participation temperorarily suspended");
+  } else{
+    console.log("user not yet logged in")
   }
 }
 
 function communicate(position){
   console.log("starting communication")
+  
+  let cookie = document.cookie
+  let stage1 = cookie.split(":")[1]
+  let id = stage1.substr(0,stage1.length-2)
+  
   var lat = position.coords.latitude;
   var long = position.coords.longitude;
   const data = [lat,long]
