@@ -9,7 +9,7 @@ function join(){
   console.log(data)
   
   const req = new XMLHttpRequest();
-  req.open("POST","/connect");
+  req.open("POST","/connect2");
   req.onreadystatechange = function(res){
     if (req.readyState == 4 && req.status == 200){
       var code = req.responseText
