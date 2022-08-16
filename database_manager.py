@@ -313,7 +313,7 @@ def get_player_data(package,ip):
 
 def get_target_locations(package,id):
   print("+++RUNNING get_target_location+++")
-  c,con = pckage
+  c,con = package
   c.execute("SELECT target FROM players WHERE ip=?",(id,))
   print("targets of ["+id+"]")
   print(c.fetchone())
