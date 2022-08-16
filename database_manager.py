@@ -229,8 +229,12 @@ def get_player_data(package,ip):
 def get_target_locations(package,id):
   print("Getting target locations for player: " + id)
   c,con = package
+  print("here is the data being dealt with:")
+  c.execute("SELECT * FROM players")
+  for player in c.fetchall():
+    print(player)
   c.execute("SELECT target FROM players WHERE ip=?",(id,))
-  targets = c.fetchone()[0]
+  targets = c.fetchone()
   data = []
   if targets == "-":
     print("- no targets for this player")
