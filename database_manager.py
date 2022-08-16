@@ -240,6 +240,8 @@ def get_target_locations(package,id):
     for target in targets.split(";"):
       c.execute("SELECT name,location FROM players WHERE ip=?",(target,))
       name,location = c.fetchone()
+      print("adding player " + target)
+      print(name,location)
       if location != "-":
         lat,long = [float(x) for x in location.split(",")]
         mini_json = {"id":target,"name":name,"lat":lat,"long":long}
