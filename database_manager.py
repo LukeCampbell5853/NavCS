@@ -310,3 +310,10 @@ def get_player_data(package,ip):
   print("ip, name, game, target, location, score, last_contact")
   print(c.fetchone())
   print("---END FUNCTION---")
+
+def get_target_locations(package,id):
+  print("+++RUNNING get_target_location+++")
+  c,con = pckage
+  c.execute("SELECT target FROM players WHERE ip=?",(id,))
+  print(c.fetchone())
+  print("---END FUNCTION---")
