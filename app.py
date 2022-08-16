@@ -129,7 +129,8 @@ def update_state():
         print("               Getting targets")
         targets = db_man.get_target_locations(db,id)
         for target in targets:
-          print("                    -" + target)
+          t_id,t_name,t_location = target
+          print("                    -Id: " + t_id + ". Name: " + t_name + ". Location: " + str(t_location) + ".")
         db_man.save(db)
         
       else:
