@@ -325,7 +325,7 @@ def get_target_locations(package,id):
     targets = c.fetchone()
     print("targets not in list form")
   print(targets)
-  if targets != "-":
+  if targets != "-" and targets != None:
     targets = c.fetchone().split(";")
     for target in targets:
       print("target id:"+id)
