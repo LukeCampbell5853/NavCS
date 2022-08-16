@@ -50,11 +50,13 @@ function clear_map(){
 function analyse(data){
   //const json = JSON.parse(data);
   const json = data
-  for (let i = 0; i < json.length; i++) {
-    let name = json[i].name;
-    let lat = json[i].lat;
-    let long = json[i].long;
-    console.log(name + " is at (" + lat + "," + long + ")");
-    L.marker([lat, long]).addTo(markers);
+  if (json.length > 0){
+    for (let i = 0; i < json.length; i++) {
+      let name = json[i].name;
+      let lat = json[i].lat;
+      let long = json[i].long;
+      console.log(name + " is at (" + lat + "," + long + ")");
+      L.marker([lat, long]).addTo(markers);
+    }
   }
 }
