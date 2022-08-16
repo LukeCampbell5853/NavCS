@@ -319,7 +319,7 @@ def get_target_locations(package,id):
   print(c.fetchone())
   print(type(c.fetchone()))
   try:
-    targets = c.fetchone()[]
+    targets = c.fetchone()[0]
   except:
     targets = c.getchone()
   if ";" in targets:
