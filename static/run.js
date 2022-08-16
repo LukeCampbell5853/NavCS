@@ -30,12 +30,13 @@ function communicate(position){
         console.log("game not currently running")
       } else {
         console.log("game data updated")
-        var coors = (req.responseText).split(",");
+        analyse(req.responseText);
+        /*var coors = (req.responseText).split(",");
         var lat = parseFloat(coors[0]);
         var long = parseFloat(coors[1]);
         console.log([lat,long])
         map.panTo(new L.LatLng(lat, long));
-        L.marker([lat, long]).addTo(markers);   
+        L.marker([lat, long]).addTo(markers);*/   
       }
     }
   }
@@ -44,4 +45,14 @@ function communicate(position){
 
 function clear_map(){
   markers.clearLayers();
+}
+
+function analyse(data){
+  const json = JSON.parse(data);
+  for (let i = 0; i < json.length; i++) {
+    let name = json[i].name;
+    let lat = json[i].lat;
+    let long = json[i].long;
+    console.log(name + " is at (" + lat + "," + long + ")");
+  }
 }
