@@ -238,3 +238,14 @@ def get_target_locations(package,id):
     targets = c.fetchone()
     print("- got without index selection")
   print("- unprocessed targets: " + targets)
+  if targets == "-":
+    print("- no targets for this player")
+  else:
+    print("- targets for this player: ")
+    for target in targets.split(";"):
+      c.execute("SELECT name,location FROM players WHERE ip=?",(target,))
+      name,location = c.fetchone()
+      print("   >>id       :" + target)
+      print("     name     :" + name)
+      print("     location :" + location)
+      
