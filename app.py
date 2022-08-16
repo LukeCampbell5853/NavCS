@@ -176,6 +176,7 @@ def run():
 @app.route("/update_state", methods=["POST","GET"])
 
 def update_state():
+  print("RUNNING update_state")
   lat,long,id = str(request.data).strip("b").strip("'").split(",")
   lat,long = float(lat),float(long)
   db = db_man.init_SQL()
@@ -195,16 +196,18 @@ def update_state():
       if db_man.get_mode(db,game) == "HS_2":
         print("running hide and seek game")
         program = modes.HideAndSeek(id)
+        print(program.players)
+        if program.assigned():
+          print("targets already assigned")
+        else:
+          print("targets not yet assigned, fixing")
+          program.assign_targets()
+        db_man.get_target_locations(db)
+        db_man.save(db)
+        
       else:
         print("unknown game mode")
         print(db_man.get_mode(db,game))
-      print(program.players)
-      if program.assigned():
-        print("targets already assigned")
-      else:
-        print("targets not yet assigned, fixing")
-        program.assign_targets()
-      db_man.save(db)
       return(loc_string)
     else:
       print("game not running rn")
