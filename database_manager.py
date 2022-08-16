@@ -228,14 +228,19 @@ def get_player_data(package,ip):
   c.execute("SELECT * FROM players WHERE ip=?",(ip,))
 
 def get_target_locations(package,id):
+  print("Getting target locations for player: " + id)
   c,con = package
   c.execute("SELECT target FROM players WHERE ip=?",(id,))
   try:
     targets = c.fetchone()[0]
+    print("- got with index selection")
   except:
     targets = c.fetchone()
+    print("- got without index selection")
   if targets != "-" and targets != None:
+    print("- this player has targets")
     targets = c.fetchone().split(";")
     for target in targets:
       c.execute("SELECT name,location FROM players WHERE ip=?",(id,))
       name,location = c.fetchone()
+      print(f"- target = ['id':'{id}','name':'{name}','location':{location}]")
