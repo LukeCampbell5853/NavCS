@@ -246,6 +246,7 @@ def get_target_locations(package,id):
     for target in targets.split(";"):
       c.execute("SELECT name,location FROM players WHERE ip=?",(target,))
       name,location = c.fetchone()
-      lat,long = [float(x) for x in location.split(",")]
-      data.append([target,(lat,long)])
+      if location != "-":
+        lat,long = [float(x) for x in location.split(",")]
+        data.append([target,(lat,long)])
   return(data)
