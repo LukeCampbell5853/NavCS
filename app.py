@@ -202,7 +202,7 @@ def update_state():
         else:
           print("targets not yet assigned, fixing")
           program.assign_targets()
-        db_man.get_target_locations(db)
+        db_man.get_target_locations(db,id)
         db_man.save(db)
         
       else:
