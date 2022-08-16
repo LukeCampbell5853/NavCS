@@ -128,15 +128,12 @@ def update_state():
           program.assign_targets()
         print("               Getting targets")
         targets = db_man.get_target_locations(db,id)
-        for target in targets:
-          t_id,t_name,t_location = target
-          print("                    -Id: " + t_id + ". Name: " + t_name + ". Location: " + str(t_location) + ".")
         db_man.save(db)
-        
+        return(targets)
       else:
         print("          unknown game mode")
         print(db_man.get_mode(db,game))
-      return(loc_string)
+        return("!")
     else:
       print("     game not running rn")
       db_man.end_query(db)
