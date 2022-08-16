@@ -127,7 +127,9 @@ def update_state():
           print("               targets not yet assigned, fixing")
           program.assign_targets()
         print("               Getting targets")
-        db_man.get_target_locations(db,id)
+        targets = db_man.get_target_locations(db,id)
+        for target in targets:
+          print("                    -" + target)
         db_man.save(db)
         
       else:
