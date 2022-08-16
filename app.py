@@ -129,7 +129,7 @@ def update_state():
         print("               Getting targets")
         targets = db_man.get_target_locations(db,id)
         db_man.save(db)
-        return(targets)
+        return(jsonify(targets))
       else:
         print("          unknown game mode")
         print(db_man.get_mode(db,game))
