@@ -231,13 +231,7 @@ def get_target_locations(package,id):
   print("Getting target locations for player: " + id)
   c,con = package
   c.execute("SELECT target FROM players WHERE ip=?",(id,))
-  try:
-    targets = c.fetchone()[0]
-    print("- got with index selection")
-  except:
-    targets = c.fetchone()
-    print("- got without index selection")
-  print("- unprocessed targets: " + targets)
+  targets = c.fetchone()[0]
   data = []
   if targets == "-":
     print("- no targets for this player")
