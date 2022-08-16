@@ -318,11 +318,18 @@ def get_target_locations(package,id):
   print("targets of ["+id+"]")
   print(c.fetchone())
   print(type(c.fetchone()))
-  targets = c.fetchone().split(";")
-  for target in targets:
-    print("target id:"+id)
-    c.execute("SELECT name,location FROM players WHERE ip=?",(id,))
-    name,location = c.fetchone()
-    print("target name:"+name)
-    print("target location:"+location)
+  try:
+    targets = c.fetchone()[]
+  except:
+    targets = c.getchone()
+  if ";" in targets:
+    targets = c.fetchone().split(";")
+    for target in targets:
+      print("target id:"+id)
+      c.execute("SELECT name,location FROM players WHERE ip=?",(id,))
+      name,location = c.fetchone()
+      print("target name:"+name)
+      print("target location:"+location)
+  else:
+    print("no registered targets for ["+id+"]")
   print("---END FUNCTION---")
