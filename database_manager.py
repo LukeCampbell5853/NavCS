@@ -240,6 +240,8 @@ def get_target_locations(package,id):
     print("- no targets for this player")
   else:
     print("- targets for this player: ")
+    print(target)
+    print(target[0])
     for target in targets.split(";"):
       c.execute("SELECT name,location FROM players WHERE ip=?",(target,))
       name,location = c.fetchone()
