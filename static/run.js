@@ -31,12 +31,12 @@ function communicate(position){
       } else {
         console.log("game data updated")
         analyse(req.responseText);
-        /*var coors = (req.responseText).split(",");
+        var coors = (req.responseText).split(",");
         var lat = parseFloat(coors[0]);
         var long = parseFloat(coors[1]);
         console.log([lat,long])
         map.panTo(new L.LatLng(lat, long));
-        L.marker([lat, long]).addTo(markers);*/   
+        L.marker([lat, long]).addTo(markers);   
       }
     }
   }
@@ -55,5 +55,6 @@ function analyse(data){
     let lat = json[i].lat;
     let long = json[i].long;
     console.log(name + " is at (" + lat + "," + long + ")");
+    L.marker([lat, long]).addTo(markers);
   }
 }
