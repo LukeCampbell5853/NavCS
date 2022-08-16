@@ -322,7 +322,8 @@ def get_target_locations(package,id):
     targets = c.fetchone()[0]
   except:
     targets = c.getchone()
-  if ";" in targets:
+  print(targets)
+  if targets != "-":
     targets = c.fetchone().split(";")
     for target in targets:
       print("target id:"+id)
