@@ -316,7 +316,7 @@ def get_target_locations(package,id):
   c,con = package
   c.execute("SELECT target FROM players WHERE ip=?",(id,))
   print("targets of ["+id+"]")
-  targets = c.fetchall()
+  targets = c.fetchone().split(";")
   for target in targets:
     print("target id:"+id)
     c.execute("SELECT name,location FROM players WHERE ip=?",(id,))
