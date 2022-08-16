@@ -48,7 +48,8 @@ function clear_map(){
 }
 
 function analyse(data){
-  const json = JSON.parse(data);
+  //const json = JSON.parse(data);
+  const json = data
   for (let i = 0; i < json.length; i++) {
     let name = json[i].name;
     let lat = json[i].lat;
