@@ -242,5 +242,5 @@ def get_target_locations(package,id):
       name,location = c.fetchone()
       if location != "-":
         lat,long = [float(x) for x in location.split(",")]
-        data.append([target,(lat,long)])
+        data.append([target,name,(lat,long)])
   return(data)
