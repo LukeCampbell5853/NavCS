@@ -237,10 +237,13 @@ def get_target_locations(package,id):
   except:
     targets = c.fetchone()
     print("- got without index selection")
-  if targets != "-" and targets != None:
-    print("- this player has targets")
+  try:
     targets = c.fetchone().split(";")
+    print("- this player has targets")
     for target in targets:
       c.execute("SELECT name,location FROM players WHERE ip=?",(id,))
       name,location = c.fetchone()
       print(f"- target = ['id':'{id}','name':'{name}','location':{location}]")
+  except:
+    print("- error retrieving data")
+    print("- data: " + c.fetchone())
