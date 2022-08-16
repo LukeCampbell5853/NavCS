@@ -315,5 +315,6 @@ def get_target_locations(package,id):
   print("+++RUNNING get_target_location+++")
   c,con = pckage
   c.execute("SELECT target FROM players WHERE ip=?",(id,))
+  print("targets of ["+id+"]")
   print(c.fetchone())
   print("---END FUNCTION---")
