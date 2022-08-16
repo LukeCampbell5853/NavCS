@@ -242,7 +242,7 @@ def get_target_locations(package,id):
     print("- targets for this player: ")
     for target in targets.split(";"):
       c.execute("SELECT name,location FROM players WHERE ip=?",(target,))
-      name,location = c.fetchone()[0]
+      name,location = c.fetchone()
       print("adding player " + target)
       print(name,location)
       if location != "-":
