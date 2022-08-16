@@ -29,7 +29,6 @@ class player:
   def register(self,package):
     c,con = package
     data = (self.ip,self.name,self.code,"-","-",0,self.update)
-    print("data:",data)
     c.execute("INSERT INTO players (ip,name,game,target,location,score,last_contact) VALUES(?,?,?,?,?,?,?)",data)
 
 class game:
