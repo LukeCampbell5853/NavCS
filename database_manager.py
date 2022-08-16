@@ -242,5 +242,6 @@ def get_target_locations(package,id):
       name,location = c.fetchone()
       if location != "-":
         lat,long = [float(x) for x in location.split(",")]
-        data.append([target,name,(lat,long)])
+        mini_json = {"id":target,"name":name,"lat":lat,"long":long}
+        data.append(mini_json)
   return(data)
