@@ -122,7 +122,7 @@ def update_state():
         db_man.save(db)
         print("data to transmit for [" + id + "]")
         print(targets)
-        return(make_response(targets))
+        return({"info":targets})
       else:
         return("!")
     else:
