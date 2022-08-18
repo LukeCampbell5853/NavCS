@@ -59,7 +59,7 @@ function clear_map(){
 }
 
 function add_marker(lat,long,text,colour){
-  const string = "<p style='color:"+colour"'>(" + text + ")</p>";
+  const string = "<p style='color:" + colour + "'>(" + text + ")</p>";
   console.log(string);
   L.marker([lat, long], {
     icon: new L.divIcon({
