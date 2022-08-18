@@ -61,7 +61,7 @@ function clear_map(){
 function add_marker(lat,long,text,colour){
   L.marker([lat, long], {
     icon: new L.divIcon({
-      html: '<p color="'+colour+'">'+name+'</p>'
+      html: '<p color="red">Luke Campbell</p>'
     })
   }).addTo(markers);
 }
