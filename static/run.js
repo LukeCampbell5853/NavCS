@@ -58,8 +58,8 @@ function clear_map(){
   markers.clearLayers();
 }
 
-function add_marker(lat,long,text){
-  const string = "<i>(" + text + ")</i>";
+function add_marker(lat,long,text,colour){
+  const string = "<p style='color:"+colour"'>(" + text + ")</p>";
   console.log(string);
   L.marker([lat, long], {
     icon: new L.divIcon({
@@ -77,7 +77,7 @@ function analyse(data){
       let lat = json[i].lat;
       let long = json[i].long;
       console.log(name + " is at (" + lat + "," + long + ")");
-      add_marker(lat,long,name);
+      add_marker(lat,long,name,"red");
     }
   }
 }
