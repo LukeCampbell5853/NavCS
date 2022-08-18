@@ -37,10 +37,11 @@ function communicate(position){
       } else if (data == "4"){
         console.log("[game not found]")
       } else {
+        const obj = JSON.parse(data);
         console.log("[target info gained]");
-        console.log(typeof(data));
-        console.log(data["id"]);
-        analyse(data["id"]);
+        console.log(typeof(obj));
+        console.log(obj["info"]);
+        analyse(obj["info"]);
         var coors = (req.responseText).split(",");
         var lat = parseFloat(coors[0]);
         var long = parseFloat(coors[1]);
