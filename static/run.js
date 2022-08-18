@@ -61,11 +61,11 @@ function clear_map(){
 function add_marker(lat,long,text,colour){
   const string = "<p>" + text + "</p>";
   console.log(string);
-  L.marker([lat, long], {
+  /*L.marker([lat, long], {
     icon: new L.divIcon({
-      html: string;
+      html: string
     })
-  }).addTo(markers);
+  }).addTo(markers);*/
 }
 
 function analyse(data){
