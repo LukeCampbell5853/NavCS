@@ -28,13 +28,13 @@ function communicate(position){
       var data = req.response;
       console.log("recieved communication [v]");
       console.log(data);
-      if (data == 1){
+      if (data == "1"){
         console.log("[no active targets]");
-      } else if (data == 2){
+      } else if (data == "2"){
         console.log("[invalid game mode]");
-      } else if (data == 3){
+      } else if (data == "3"){
         console.log("[game not currently running]");
-      } else if (data == 4){
+      } else if (data == "4"){
         console.log("[game not found]")
       } else {
         console.log("[target info gained]")
