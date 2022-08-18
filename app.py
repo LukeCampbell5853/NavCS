@@ -120,7 +120,7 @@ def update_state():
           program.assign_targets()
         targets = db_man.get_target_locations(db,id)
         db_man.save(db)
-        print("data to transmit for [" + id "]")
+        print("data to transmit for [" + id + "]")
         print(targets)
         return(make_response(targets))
       else:
