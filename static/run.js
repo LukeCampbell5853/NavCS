@@ -1,6 +1,6 @@
 function orientate(){
   if (navigator.geolocation){
-    navigator.getlocation.getCurrentPosition(go_to_me);
+    navigator.geolocation.getCurrentPosition(go_to_me);
   }
 }
 
