@@ -37,7 +37,6 @@ function communicate(position){
         const obj = JSON.parse(data);
         console.log("[target info gained]");
         analyse(obj["info"]);
-        console.log([lat,long])
         map.panTo(new L.LatLng(my_lat, my_long));
         L.marker([my_lat, my_long]).addTo(markers);   
       }
