@@ -125,19 +125,19 @@ def update_state():
           return({"info":targets})
         else:
           print("no active targets")
-          return(1) #no active targets
+          return("1") #no active targets
       else:
         print("invalid game code")
-        return(2) #invalid game mode
+        return("2") #invalid game mode
     else:
       print("game not currently running")
       db_man.end_query(db)
-      return(3) #game not currently running
+      return("3") #game not currently running
   else:
     print("game not found")
     db_man.end_query(db)
-    return(4) #game not found
-
+    return("4") #game not found
+  
 if __name__ == '__main__':
   port = int(os.environ.get("PORT", 5000))
   app.run(debug = True, port=port)
