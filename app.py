@@ -101,11 +101,9 @@ def run():
 
 def update_state():
   lat,long,id = str(request.data).strip("b").strip("'").split(",")
-  print("RUNNING update_state for [" + id + "]")
   lat,long = float(lat),float(long)
   db = db_man.init_SQL()
   game = db_man.get_code(db,id)
-  print("user id:", id)
   loc_string = str(lat)+","+str(long)
   game_state = db_man.game_running(db,game)
   if game_state:
@@ -116,25 +114,19 @@ def update_state():
       if db_man.get_mode(db,game) == "HS_2":
         program = modes.HideAndSeek(id)
         if not program.assigned():
-          print("+++ASSIGNING TARGETS+++")
           program.assign_targets()
         targets = db_man.get_target_locations(db,id)
         db_man.save(db)
         if len(targets)>0:
-          print("targets returned")
           return({"info":targets})
         else:
-          print("no active targets")
           return("1") #no active targets
       else:
-        print("invalid game code")
         return("2") #invalid game mode
     else:
-      print("game not currently running")
       db_man.end_query(db)
       return("3") #game not currently running
   else:
-    print("game not found")
     db_man.end_query(db)
     return("4") #game not found
   
