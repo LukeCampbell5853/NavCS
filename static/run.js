@@ -58,9 +58,11 @@ function analyse(data){
       let lat = json[i].lat;
       let long = json[i].long;
       console.log(name + " is at (" + lat + "," + long + ")");
-      L.marker([lat, long]{icon: new L.DivIcon({
-        html: '<span class="my-div-span">TEST TEXT</span>'
-      })).addTo(markers);
+      L.marker([lat, long], {
+        icon: new L.DivIcon({
+          html: '<span class="my-div-span">TEST TEXT</span>'
+        })
+      }).addTo(markers);
     }
   }
 }
