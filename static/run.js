@@ -15,7 +15,6 @@ function communicate(position){
   let cookie = document.cookie
   let stage1 = cookie.split(":")[1]
   let my_id = stage1.substr(0,stage1.length)
-  console.log("id:",id)
   
   var my_lat = position.coords.latitude;
   var my_long = position.coords.longitude;
