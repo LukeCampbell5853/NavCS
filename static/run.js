@@ -14,20 +14,18 @@ function communicate(position){
   
   let cookie = document.cookie
   let stage1 = cookie.split(":")[1]
-  let id = stage1.substr(0,stage1.length)
+  let my_id = stage1.substr(0,stage1.length)
   console.log("id:",id)
   
-  var lat = position.coords.latitude;
-  var long = position.coords.longitude;
-  const data = [lat,long,id]
+  var my_lat = position.coords.latitude;
+  var my_long = position.coords.longitude;
+  const my_data = [my_lat,my_long,my_id]
 
   const req = new XMLHttpRequest();
   req.open("POST","/update_state");
   req.onreadystatechange = function(res){
     if (req.readyState == 4 && req.status == 200){
       var data = req.response;
-      console.log("recieved communication [v]");
-      console.log(data);
       if (data == "1"){
         console.log("[no active targets]");
       } else if (data == "2"){
@@ -39,19 +37,14 @@ function communicate(position){
       } else {
         const obj = JSON.parse(data);
         console.log("[target info gained]");
-        console.log(typeof(obj));
-        console.log(obj["info"]);
         analyse(obj["info"]);
-        var coors = (req.responseText).split(",");
-        var lat = parseFloat(coors[0]);
-        var long = parseFloat(coors[1]);
         console.log([lat,long])
-        map.panTo(new L.LatLng(lat, long));
-        L.marker([lat, long]).addTo(markers);   
+        map.panTo(new L.LatLng(my_lat, my_long));
+        L.marker([my_lat, my_long]).addTo(markers);   
       }
     }
   }
-  req.send(data);
+  req.send(my_data);
 }
 
 function clear_map(){
