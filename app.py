@@ -100,8 +100,8 @@ def run():
 @app.route("/update_state", methods=["POST","GET"])
 
 def update_state():
-  print("RUNNING update_state")
   lat,long,id = str(request.data).strip("b").strip("'").split(",")
+  print("RUNNING update_state for [" + id + "]")
   lat,long = float(lat),float(long)
   db = db_man.init_SQL()
   game = db_man.get_code(db,id)
@@ -120,17 +120,23 @@ def update_state():
           program.assign_targets()
         targets = db_man.get_target_locations(db,id)
         db_man.save(db)
-        print("data to transmit for [" + id + "]")
-        print(targets)
-        return({"info":targets})
+        if len(targets)>0:
+          print("targets returned")
+          return({"info":targets})
+        else:
+          print("no active targets")
+          return(1) #no active targets
       else:
-        return("!")
+        print("invalid game code")
+        return(2) #invalid game mode
     else:
+      print("game not currently running")
       db_man.end_query(db)
-      return("!")
+      return(3) #game not currently running
   else:
+    print("game not found")
     db_man.end_query(db)
-    return("!")
+    return(4) #game not found
 
 if __name__ == '__main__':
   port = int(os.environ.get("PORT", 5000))
