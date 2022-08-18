@@ -18,7 +18,8 @@ function communicate(position){
   
   var my_lat = position.coords.latitude;
   var my_long = position.coords.longitude;
-  const my_data = [my_lat,my_long,my_id]
+  const my_data = [my_lat,my_long,my_id];
+  add_marker(my_lat,my_long,"me","green");
 
   const req = new XMLHttpRequest();
   req.open("POST","/update_state");
@@ -37,8 +38,7 @@ function communicate(position){
         const obj = JSON.parse(data);
         console.log("[target info gained]");
         analyse(obj["info"]);
-        map.panTo(new L.LatLng(my_lat, my_long));
-        L.marker([my_lat, my_long]).addTo(markers);   
+        map.panTo(new L.LatLng(my_lat, my_long));   
       }
     }
   }
@@ -47,6 +47,14 @@ function communicate(position){
 
 function clear_map(){
   markers.clearLayers();
+}
+
+function add_marker(lat,long,text,colour){
+  L.marker([lat, long], {
+    icon: new L.divIcon({
+      html: '<p color="'+colour+'">'+name+'</p>'
+    })
+  }).addTo(markers);
 }
 
 function analyse(data){
@@ -58,11 +66,7 @@ function analyse(data){
       let lat = json[i].lat;
       let long = json[i].long;
       console.log(name + " is at (" + lat + "," + long + ")");
-      L.marker([lat, long], {
-        icon: new L.DivIcon({
-          html: '<span class="my-div-span">TEST TEXT</span>'
-        })
-      }).addTo(markers);
+      add_marker(lat,long,name,"red");
     }
   }
 }
