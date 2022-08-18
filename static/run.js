@@ -4,7 +4,7 @@ function orientate(){
   }
 }
 
-function go_to_me(){
+function go_to_me(position){
   map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
 }
 
@@ -13,9 +13,9 @@ function update() {
   if (navigator.geolocation && cookie != ""){
     navigator.geolocation.getCurrentPosition(communicate);
   } else if (navigator.geolocation) { 
-    console.log("nav unavailable - participation temperorarily suspended");
+    console.log("user not yet logged in");
   } else{
-    console.log("user not yet logged in")
+    console.log("nav unavaliable")
   }
 }
 
