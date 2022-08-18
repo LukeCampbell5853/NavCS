@@ -28,11 +28,17 @@ function communicate(position){
       var data = req.response;
       console.log("recieved communication [v]");
       console.log(data);
-      if (data == "!"){
-        console.log("game not currently running")
+      if (data == 1){
+        console.log("[no active targets]");
+      } else if (data == 2){
+        console.log("[invalid game mode]");
+      } else if (data == 3){
+        console.log("[game not currently running]");
+      } else if (data == 4){
+        console.log("[game not found]")
       } else {
-        console.log("game data updated")
-        analyse(req.responseText);
+        console.log("[target info gained]")
+        analyse(req.response["id"]);
         var coors = (req.responseText).split(",");
         var lat = parseFloat(coors[0]);
         var long = parseFloat(coors[1]);
