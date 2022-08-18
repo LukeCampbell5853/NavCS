@@ -25,7 +25,9 @@ function communicate(position){
   req.open("POST","/update_state");
   req.onreadystatechange = function(res){
     if (req.readyState == 4 && req.status == 200){
-      var data = req.responseText;
+      var data = req.response;
+      console.log("recieved communication [v]");
+      console.log(data);
       if (data == "!"){
         console.log("game not currently running")
       } else {
