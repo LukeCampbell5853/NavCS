@@ -1,3 +1,13 @@
+function orientate(){
+  if (navigator.geolocation){
+    navigator.getlocation.getCurrentPosition(go_to_me);
+  }
+}
+
+function go_to_me(){
+  map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
+}
+
 function update() {
   let cookie = document.cookie;
   if (navigator.geolocation && cookie != ""){
@@ -38,7 +48,6 @@ function communicate(position){
         const obj = JSON.parse(data);
         console.log("[target info gained]");
         analyse(obj["info"]);
-        map.panTo(new L.LatLng(my_lat, my_long));   
       }
     }
   }
