@@ -209,8 +209,7 @@ def get_players(package,code):
   return(c.fetchall())
 
 #(ip,name,start,game,target,location,score,last_contact)
-def update_targets(package,ip,targets):
-  
+def update_targets(package,ip,targets):  
   target_string = ""
   for target in targets:
     target_string += target + ";"
