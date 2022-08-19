@@ -83,6 +83,7 @@ function analyse(data){
       let lat = json[i].lat;
       let long = json[i].long;
       add_marker(lat,long,name,"red");
+      console.log("chasing player" + name);
     }
   }
 }
