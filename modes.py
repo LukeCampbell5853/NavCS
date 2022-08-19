@@ -34,3 +34,19 @@ class HideAndSeek:
     db = db_man.init_SQL()
     db_man.update_targets(db,seeker,hiders)
     db_man.save(db)
+  
+  def register_catch(self,id):
+    db = db_man.init_SQL()
+    hiders = []
+    seekers = []
+    for player in all_players:
+      data = db_man.get_players(db,self.code)
+      player_id = data[0]
+      player_targets = data[2]
+      if len(player_targets) > 0 or player_id == id:
+        seekers.append(id)
+      else:
+        hiders.append(id)
+    for seeker in seeker:
+      db_man.update_targets(db,seeker,hiders)
+    db_man.save(db)
