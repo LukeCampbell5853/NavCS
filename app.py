@@ -123,12 +123,14 @@ def update_state():
           return("1") #no active targets
       else:
         return("2") #invalid game mode
+    elif game_state[0]:
+      return("3") #game not started
     else:
       db_man.end_query(db)
-      return("3") #game not currently running
+      return("4") #game finished
   else:
     db_man.end_query(db)
-    return("4") #game not found
+    return("5") #game not found
   
 if __name__ == '__main__':
   port = int(os.environ.get("PORT", 5000))
