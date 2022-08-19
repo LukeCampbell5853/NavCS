@@ -90,3 +90,7 @@ function analyse(data){
     }
   }
 }
+
+function register_catch(){
+  console.log("I got caught!");
+}
