@@ -137,8 +137,27 @@ def update_state():
 def register_catch():
   print("+++RUNNING register_catch+++")
   id = str(request.data)
-  print("[" + id + "] is registering being caught")
-  return("DONE")
+  
+  db = db_man.init_SQL()
+  game = db_man.get_code(db,id)
+  game_state = db_man.game_running(db,game)
+  if game_state:
+    if game_state[0] and not game_state[1]:
+      db_man.save(db)
+      db = db_man.init_SQL()
+      if db_man.get_mode(db,game) == "HS_2":
+        program = modes.HideAndSeek(id)
+        program.register_catch(id) 
+      else:
+        return("1") #invalid game mode
+    elif not game_state[1]:
+      return("2") #game not started
+    else:
+      db_man.end_query(db)
+      return("3") #game finished
+  else:
+    db_man.end_query(db)
+    return("4") #game not found
 
 if __name__ == '__main__':
   port = int(os.environ.get("PORT", 5000))
