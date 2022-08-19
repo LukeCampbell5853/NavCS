@@ -49,7 +49,7 @@ function communicate(position){
       } else if (data == "4"){
         console.log("[game finished]");
         message.innerHTML = "Game finished.";
-      } else if{
+      } else if (data == "5"){
         console.log("[game not found]");
         message.innerHTML = "Game not found.";
       } else {
