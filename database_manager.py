@@ -226,24 +226,15 @@ def get_player_data(package,ip):
   c.execute("SELECT * FROM players WHERE ip=?",(ip,))
 
 def get_target_locations(package,id):
-  print("Getting target locations for player: " + id)
   c,con = package
-  print("here is the data being dealt with:")
-  c.execute("SELECT * FROM players")
-  for player in c.fetchall():
-    print(player)
   c.execute("SELECT target FROM players WHERE ip=?",(id,))
   targets = c.fetchone()[0]
   data = []
-  if targets == "-":
-    print("- no targets for this player")
-  else:
-    print("- targets for this player: ")
+  if targets != "-":
     for target in targets.split(";"):
       c.execute("SELECT name,location FROM players WHERE ip=?",(target,))
       name,location = c.fetchone()
-      print("adding player " + target)
-      print(name,location)
+
       if location != "-":
         lat,long = [float(x) for x in location.split(",")]
         mini_json = {"id":target,"name":name,"lat":lat,"long":long}
