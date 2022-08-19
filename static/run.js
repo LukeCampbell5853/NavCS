@@ -11,6 +11,7 @@ function go_to_me(position){
 function update() {
   console.log("updating");
   const message = document.getElementById("state_message");
+  const link = document.getElementById("register_catch_button");
   cookie = document.cookie;
   
   if (navigator.geolocation && cookie != ""){
