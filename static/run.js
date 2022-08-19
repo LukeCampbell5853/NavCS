@@ -36,18 +36,27 @@ function communicate(position){
   req.onreadystatechange = function(res){
     if (req.readyState == 4 && req.status == 200){
       var data = req.response;
+      const message = document.getElementById("state_message");
       if (data == "1"){
         console.log("[no active targets]");
+        message.innerHTML = "You are being chased, either keep moving or find a good hiding spot.";
       } else if (data == "2"){
         console.log("[invalid game mode]");
+        message.innerHTML = "Invalid game mode.";
       } else if (data == "3"){
         console.log("[game not currently running]");
+        message.innerHTML = "Waiting for game to start.";
       } else if (data == "4"){
-        console.log("[game not found]")
+        console.log("[game finished]");
+        message.innerHTML = "Game finished.";
+      } else if{
+        console.log("[game not found]");
+        message.innerHTML = "Game not found.";
       } else {
         const obj = JSON.parse(data);
         console.log("[target info gained]");
         analyse(obj["info"]);
+        message.innerHTML = "Your targets are shown on the map below, go find them!";
       }
     }
   }
