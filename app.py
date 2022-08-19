@@ -131,7 +131,13 @@ def update_state():
   else:
     db_man.end_query(db)
     return("5") #game not found
-  
+
+@app.route("/register_catch")
+
+def register_catch():
+  print("+++RUNNING register_catch+++")
+  return("DONE")
+
 if __name__ == '__main__':
   port = int(os.environ.get("PORT", 5000))
   app.run(debug = True, port=port)
