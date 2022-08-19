@@ -136,7 +136,7 @@ def update_state():
 
 def register_catch():
   print("+++RUNNING register_catch+++")
-  id = str(request.data).strip("[b'").strip("']")
+  id = str(request.data)
   print("[" + id + "] is registering being caught")
   return("DONE")
 
