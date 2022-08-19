@@ -123,7 +123,7 @@ def update_state():
           return("1") #no active targets
       else:
         return("2") #invalid game mode
-    elif game_state[0]:
+    elif not game_state[1]:
       return("3") #game not started
     else:
       db_man.end_query(db)
