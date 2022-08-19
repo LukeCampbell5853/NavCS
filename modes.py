@@ -36,6 +36,7 @@ class HideAndSeek:
     db_man.save(db)
   
   def register_catch(self,id):
+    print("REGISTERING CATCH FOR PLAYER [" + id + "]")
     db = db_man.init_SQL()
     hiders = []
     seekers = []
@@ -48,5 +49,6 @@ class HideAndSeek:
       else:
         hiders.append(id)
     for seeker in seeker:
+      print("   - player [" + id + "] is a seeker chasing hiders " + str(hiders))
       db_man.update_targets(db,seeker,hiders)
     db_man.save(db)
