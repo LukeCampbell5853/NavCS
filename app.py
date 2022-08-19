@@ -136,6 +136,8 @@ def update_state():
 
 def register_catch():
   print("+++RUNNING register_catch+++")
+  id = request.data
+  print("[" + id + "] is registering being caught")
   return("DONE")
 
 if __name__ == '__main__':
