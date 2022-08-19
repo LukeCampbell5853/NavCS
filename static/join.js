@@ -17,7 +17,7 @@ function join(){
       }
       else if (resp == "[game started]"){
         console.log("game already started");
-        message.innerHTML = "The game has already started.
+        message.innerHTML = "The game has already started.";
       }
       else if (resp == "[error]"){
         console.log("an unknown error occured");
