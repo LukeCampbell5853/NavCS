@@ -132,7 +132,7 @@ def update_state():
     db_man.end_query(db)
     return("5") #game not found
 
-@app.route("/register_catch")
+@app.route("/register_catch", methods=["POST","GET"])
 
 def register_catch():
   print("+++RUNNING register_catch+++")
