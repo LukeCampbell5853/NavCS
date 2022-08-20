@@ -67,8 +67,11 @@ function clear_map(){
 }
 
 function add_marker(lat,long,text,colour){
-  const string = "<p style='color:" + colour + "'>(" + text + ")</p>";
-  L.marker([lat, long], {icon: target_icon}).addTo(markers).bindPopup(text);
+  if colour == "green"{
+    L.marker([lat, long], {icon: green_target}).addTo(markers).bindPopup(text);
+  } else{
+    L.marker([lat, long], {icon: red_target}).addTo(markers).bindPopup(text);
+  }
 }
 
 function analyse(data){
