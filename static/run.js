@@ -67,7 +67,7 @@ function clear_map(){
 }
 
 function add_marker(lat,long,text,colour){
-  const string = "<p style='color:" + colour + "'>(" + text + ")</p>";
+  const string = "<img src=\"{{url_for('static',filename='target_icon.svg')}}\" style=\"height:50px\"><p style='color:" + colour + "'>(" + text + ")</p>";
   L.marker([lat, long], {
     icon: new L.divIcon({
       html: string
