@@ -67,7 +67,7 @@ function clear_map(){
 }
 
 function add_marker(lat,long,text,colour){
-  if colour == "green"{
+  if (colour == "green"){
     L.marker([lat, long], {icon: green_target}).addTo(markers).bindPopup(text);
   } else{
     L.marker([lat, long], {icon: red_target}).addTo(markers).bindPopup(text);
