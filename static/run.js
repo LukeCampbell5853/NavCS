@@ -76,9 +76,7 @@ function clear_map(){
 
 function add_marker(lat,long,text,colour){
   const string = "<p style='color:" + colour + "'>(" + text + ")</p>";
-  L.marker([lat, long], {
-    icon: target_icon;
-  }).addTo(markers).bindPopup(text);
+  L.marker([lat, long], {icon: target_icon}).addTo(markers).bindPopup(text);
 }
 
 function analyse(data){
