@@ -13,6 +13,14 @@
     <a id="register_catch_button" onclick="register_catch()">I got caught</a>
     <div id="map" src="" style="width:95vw;height:50vw;"></div>
     <script>
+      {
+        var target_icon = L.icon({
+          iconUrl: "{{url_for('static',filename='target_icon.svg')}}",
+          iconSize:[20, 20],
+          iconAnchor:[10,10],
+        });
+      }
+      
       console.log("initialising")
       var map = L.map('map').setView([0, 0], 17);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
