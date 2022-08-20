@@ -1,11 +1,3 @@
-{
-  var target_icon = L.icon({
-    iconUrl: "{{url_for('static',filename='target_icon.svg')}}",
-    iconSize:     [20, 20],
-    iconAnchor:   [10,10],
-  });
-}
-
 function orientate(){
   if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(go_to_me);
