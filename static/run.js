@@ -1,3 +1,11 @@
+{
+  var target_icon = L.icon({
+    iconUrl: '{{url_for('static',filename='target_icon.svg')}}',
+    iconSize:     [20, 20],
+    iconAnchor:   [10,10],
+  });
+}
+
 function orientate(){
   if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(go_to_me);
@@ -67,12 +75,10 @@ function clear_map(){
 }
 
 function add_marker(lat,long,text,colour){
-  const string = "<img src=\"{{url_for('static',filename='target_icon.svg')}}\" style=\"height:50px\"><p style='color:" + colour + "'>(" + text + ")</p>";
+  const string = "<p style='color:" + colour + "'>(" + text + ")</p>";
   L.marker([lat, long], {
-    icon: new L.divIcon({
-      html: string
-    })
-  }).addTo(markers);
+    icon: target_icon;
+  }).addTo(markers).bindPopup(text);
 }
 
 function analyse(data){
