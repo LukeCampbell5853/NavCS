@@ -1,6 +1,6 @@
 {
   var target_icon = L.icon({
-    iconUrl: '{{url_for('static',filename='target_icon.svg')}}',
+    iconUrl: "{{url_for('static',filename='target_icon.svg')}}",
     iconSize:     [20, 20],
     iconAnchor:   [10,10],
   });
