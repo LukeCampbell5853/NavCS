@@ -40,6 +40,7 @@ class HideAndSeek:
     db = db_man.init_SQL()
     hiders = []
     seekers = []
+    all_players = list(self.players.keys())
     for player in self.all_players:
       data = db_man.get_players(db,self.code)
       player_id = data[0]
