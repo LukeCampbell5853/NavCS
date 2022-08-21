@@ -42,7 +42,7 @@ class HideAndSeek:
     seekers = []
     all_players = db_man.get_players(db,self.code)
     for player in all_players:
-      print("     -player data:" + player)
+      print("     -player data:" + str(player))
       player_id = player[0]
       player_targets = player[2]
       if len(player_targets) > 0 or player_id == id:
