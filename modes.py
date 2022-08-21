@@ -41,18 +41,22 @@ class HideAndSeek:
     hiders = []
     seekers = []
     all_players = db_man.get_players(db,self.code)
+    all_ids = []
     for player in all_players:
       player_id = player[0]
       player_targets = player[2]
       print("     -targets of ["+ player_id + "] are " + str(player_targets))
       if player_targets != "-":
         seekers.append(player_id)
+        others.append(player_id)
         print("     -[" + player_id + "] is a seeker.")
       elif player_id == id:
         seekers.append(id)
+        all_ids.append(id)
         print("     -[" + player_id + "] is becoming a seeker.")
       else:
         hiders.append(player_id)
+        all_ids.append(id)
         print("     -[" + player_id + "] is a hider.")
     if len(hiders) > 0:
       for seeker in seekers:
@@ -61,9 +65,7 @@ class HideAndSeek:
     else:
       print("     -no hiders left, reassigning")
       print(all_players)
-      print(id)
-      print("     -done readout")
-      hiders = all_players.remove(id)
+      hiders = all_ids.remove(id)
       db_man.update_targets(db,id,hiders)
       for hider in hiders:
         print("     -removing targets for [" + hider + "]")
