@@ -52,7 +52,7 @@ class HideAndSeek:
         seekers.append(id)
         print("     -[" + player_id + "] is becoming a seeker.")
       else:
-        hiders.append(id)
+        hiders.append(player_id)
         print("     -[" + player_id + "] is a hider.")
     if len(hiders) > 0:
       for seeker in seekers:
