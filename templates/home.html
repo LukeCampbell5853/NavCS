@@ -6,11 +6,17 @@
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
     <script src="{{url_for('static', filename='location.js')}}"></script>
     <link rel="shortcut icon" href="{{url_for('static', filename='NavCS_logo_icon.svg')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='all_pages.css')}}">
   </head>
     
   <body onload="getLocation()">
-    <h1>NavCS</h1>
-    <h4>mk. 1</h4>
+    <div id="header">
+      <img src="NavCS_logo_text.svg">
+      <div>
+        <a href="/create">Book</a>
+        <a href="/join">Join</a>
+      </div>
+    </div>
     <a href="/run">Go to game to test>></a>
     <p>Please check if your GPS is working accurately by reading the map below and verifying it shows your location. If it does not please do not join, as you can imagine it would make gameplay difficult for your teammates if your GPS says you are somewhere you are not.</p>
     <a href="/create">Book a game>></a><br><br>
