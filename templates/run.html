@@ -5,10 +5,17 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
     <script src="{{url_for('static', filename='run.js')}}"></script>
+    <link rel="shortcut icon" href="{{url_for('static', filename='NavCS_logo_icon.svg')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='all_pages.css')}}">
   </head>
   <body>
-    <h1>NavCS</h1>
-    <h4>mk. 1</h4>
+    <div id="header">
+      <img src="{{url_for('static', filename='NavCS_logo_text.svg')}}">
+      <div>
+        <a href="/">Home</a>
+        <a href="/join">Join</a>
+      </div>
+    </div>
     <p id="state_message">There was an error connecting to the server.</p>
     <a id="register_catch_button" onclick="register_catch()">I got caught</a>
     <div id="map" src="" style="width:95vw;height:50vw;"></div>
