@@ -48,7 +48,7 @@ class HideAndSeek:
       print("     -targets of ["+ player_id + "] are " + str(player_targets))
       if player_targets != "-":
         seekers.append(player_id)
-        others.append(player_id)
+        all_ids.append(player_id)
         print("     -[" + player_id + "] is a seeker.")
       elif player_id == id:
         seekers.append(id)
