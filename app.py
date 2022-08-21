@@ -110,9 +110,14 @@ def update_state():
     if game_state[0] and not game_state[1]:
       db_man.update_location(db,id,loc_string)
       db_man.save(db)
-      db = db_man.init_SQL()
-      if db_man.get_mode(db,game) == "HS_2":
-        program = modes.HideAndSeek(id)
+      mode = db_man.get_mode(db,game)
+      if mode == "HaS" or mode == "Tag":
+        if mode == "Has":
+          print("  >game is 'hide and seek'")
+          program = modes.HideAndSeek(id)
+        else:
+          print("  >game is 'tag'")
+          program = modes.Tag(id)
         if not program.assigned():
           program.assign_targets()
         targets = db_man.get_target_locations(db,id)
@@ -147,14 +152,19 @@ def register_catch():
       print("  >game is running")
       db_man.save(db)
       db = db_man.init_SQL()
-      if db_man.get_mode(db,game) == "HS_2":
-        print("  >game is 'hide and seek'")
-        program = modes.HideAndSeek(id)
+      mode = db_man.get_mode(db,game)
+      if mode == "HaS" or mode == "Tag":
+        if mode == "Has":
+          print("  >game is 'hide and seek'")
+          program = modes.HideAndSeek(id)
+        else:
+          print("  >game is 'tag'")
+          program = modes.Tag(id)
         program.register_catch(id)
         print("  >registered game [exit]")
         return("5") #success
       else:
-        print("  >game not found [exit]")
+        print("  >invalid game mode [exit]")
         return("1") #invalid game mode
     elif not game_state[1]:
       print("  >game not started [exit]")
