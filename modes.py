@@ -40,11 +40,11 @@ class HideAndSeek:
     db = db_man.init_SQL()
     hiders = []
     seekers = []
-    all_players = list(self.players.keys())
+    all_players = db_man.get_players(db,self.code)
     for player in all_players:
-      data = db_man.get_players(db,self.code)
-      player_id = data[0]
-      player_targets = data[2]
+      print("     -player data:" + player)
+      player_id = player[0]
+      player_targets = player[2]
       if len(player_targets) > 0 or player_id == id:
         seekers.append(id)
         print("     -[" + id + "] is a seeker")
