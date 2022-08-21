@@ -209,11 +209,12 @@ def get_players(package,code):
   return(c.fetchall())
 
 #(ip,name,start,game,target,location,score,last_contact)
-def update_targets(package,ip,targets):  
-  target_string = ""
-  for target in targets:
-    target_string += target + ";"
-  targets = target_string[:-1]
+def update_targets(package,ip,targets):
+  if targets != "-":
+    target_string = ""
+    for target in targets:
+      target_string += target + ";"
+    targets = target_string[:-1]
   
   c,con = package
   c.execute("SELECT * FROM players WHERE ip=?",(ip,))
