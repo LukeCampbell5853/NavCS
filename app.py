@@ -152,6 +152,7 @@ def register_catch():
         program = modes.HideAndSeek(id)
         program.register_catch(id)
         print("  >registered game [exit]")
+        return("5") #success
       else:
         print("  >game not found [exit]")
         return("1") #invalid game mode
