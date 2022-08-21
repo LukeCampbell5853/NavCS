@@ -44,6 +44,7 @@ class HideAndSeek:
     for player in all_players:
       player_id = player[0]
       player_targets = player[2]
+      print("     -targets of ["+ player_id + "] are " + str(player_targets))
       if len(player_targets) > 0:
         seekers.append(player_id)
         print("     -[" + player_id + "] is a seeker.")
@@ -53,7 +54,7 @@ class HideAndSeek:
         hiders.append(id)
         print("     -[" + player_id + "] is a hider.")
     for seeker in seekers:
-      print("     -player [" + id + "] is a seeker chasing hiders " + str(hiders))
+      print("     -player [" + seeker + "] is a seeker chasing hiders " + str(hiders))
       db_man.update_targets(db,seeker,hiders)
     db_man.save(db)
     print("     -finished [back to main]")
