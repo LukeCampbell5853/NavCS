@@ -1,6 +1,7 @@
 import database_manager as db_man
 import sqlite3
 from random import randint as r
+from random import shuffle as rs
 
 class HideAndSeek:
   def __init__(self,ip):
@@ -30,7 +31,7 @@ class HideAndSeek:
     seeker = all_players[r(0,len(all_players)-1)]
     hiders = all_players
     hiders.remove(seeker)
-    self.players[seeker]["target"] = hiders
+    self.players[seeker]["target"] = hiders #I think this is superfluous, I need to redesign this function later.
     db = db_man.init_SQL()
     db_man.update_targets(db,seeker,hiders)
     db_man.save(db)
@@ -79,3 +80,49 @@ class HideAndSeek:
       db_man.update_targets(db,id,hiders)
     db_man.save(db)
     print("     -finished [back to main]")
+
+class Tag(self,id):
+  def __init__(self,id):
+    db = db_man.init_SQL()
+    self.code = db_man.get_code(db,id)
+    self.id = id
+    self.players = {}
+    for player in db_man.get_players(db,self.code):
+      data = {}
+      data["name"] = player[1]
+      data["target"] = player[2]
+      data["location"] = player[3]
+      data["score"] = player[4]
+      self.players[player[0]] = data
+    db_man.end_query(db)
+
+  def assigned(self):
+    result = False
+    for player,data in self.players.items():
+      if data["target"] != "-":
+        result = True
+        break
+    return(result)
+  
+  def assign_targets(self):
+    print("Assigning targets for gamemode [tag]")
+    db = db_man.init_SQL()
+    players = db_man.get_players(db,self.code)
+    rs(players)
+    print(players)
+    for i in range(0,len(players)-1):
+      if i < len(players-1):
+        db_man.update_targets(db,players[i],players[i+1])
+      else:
+        db_man.update_targets(db,players[i],players[0])
+    db_man.save(db)
+  
+  def register_catch(self,id):  
+    players = db_man.get_players(db,self.code)
+    new_index = r(0,len(players)-1)
+    while id == players[new_index]:
+      new_index = r(0,len(players)-1)
+    new_target = players[new_index]
+    db = db_man.init_SQL()
+    db_man.update_targets(db,id,new_target)
+    db_man.save()
