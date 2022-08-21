@@ -42,15 +42,16 @@ class HideAndSeek:
     seekers = []
     all_players = db_man.get_players(db,self.code)
     for player in all_players:
-      print("     -player data:" + str(player))
       player_id = player[0]
       player_targets = player[2]
-      if len(player_targets) > 0 or player_id == id:
-        seekers.append(id)
-        print("     -[" + id + "] is a seeker")
+      if len(player_targets) > 0:
+        seekers.append(player_id)
+        print("     -[" + player_id + "] is a seeker.")
+      elif player_id == id:
+        print("     -[" + player_id + "] is becoming a seeker.")
       else:
         hiders.append(id)
-        print("     -[" + id + "] is a hider")
+        print("     -[" + player_id + "] is a hider.")
     for seeker in seekers:
       print("     -player [" + id + "] is a seeker chasing hiders " + str(hiders))
       db_man.update_targets(db,seeker,hiders)
