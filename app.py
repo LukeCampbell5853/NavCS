@@ -135,7 +135,7 @@ def update_state():
 @app.route("/register_catch", methods=["POST","GET"])
 
 def register_catch():
-  id = str(request.data)
+  id = str(request.data).strip("b").strip("'")
   print("RUNNING register_catch FOR id=" + id)
   
   db = db_man.init_SQL()
