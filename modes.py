@@ -51,7 +51,7 @@ class HideAndSeek:
       else:
         hiders.append(id)
         print("     -[" + id + "] is a hider")
-    for seeker in seeker:
+    for seeker in seekers:
       print("     -player [" + id + "] is a seeker chasing hiders " + str(hiders))
       db_man.update_targets(db,seeker,hiders)
     db_man.save(db)
