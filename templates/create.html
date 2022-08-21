@@ -2,10 +2,17 @@
 <html>
   <head>
     <title>NavCS - create game</title>
+    <link rel="shortcut icon" href="{{url_for('static', filename='NavCS_logo_icon.svg')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='all_pages.css')}}">
   </head>
   <body onload="set_max_date()">
-    <h1>NavCS</h1>
-    <h4>mk.1</h4>
+    <div id="header">
+      <img src="{{url_for('static', filename='NavCS_logo_text.svg')}}">
+      <div>
+        <a href="/create">Book</a>
+        <a href="/join">Join</a>
+      </div>
+    </div>
     <p id="message"></p>
     <label for="timeval">Time: </label><input type="time" id="time_val"><p id="time_indicator"></p>
     <label for="dateval">Date: </label><input type="date" id="date_val"><p id="date_indicator"></p>
