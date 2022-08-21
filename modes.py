@@ -81,7 +81,7 @@ class HideAndSeek:
     db_man.save(db)
     print("     -finished [back to main]")
 
-class Tag(self,id):
+class Tag:
   def __init__(self,id):
     db = db_man.init_SQL()
     self.code = db_man.get_code(db,id)
