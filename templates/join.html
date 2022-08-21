@@ -2,10 +2,17 @@
 <html>
   <head>
     <title>NavCS - join</title>
+    <link rel="shortcut icon" href="{{url_for('static', filename='NavCS_logo_icon.svg')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='all_pages.css')}}">
   </head>
   <body>
-    <h1>NavCS</h1>
-    <h4>mk. 1</h4
+    <div id="header">
+      <img src="{{url_for('static', filename='NavCS_logo_text.svg')}}">
+      <div>
+        <a href="/">Home</a>
+        <a href="/create">Book</a>
+      </div>
+    </div>
     <p id="message">Please enter your details to join a game:</p>
     <label for="f_name">First name: </label>
     <input id="f_name" name="f_name"/><br><br>
