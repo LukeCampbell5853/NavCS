@@ -60,6 +60,9 @@ class HideAndSeek:
         db_man.update_targets(db,seeker,hiders)
     else:
       print("     -no hiders left, reassigning")
+      print(all_players)
+      print(id)
+      print("     -done readout")
       hiders = all_players.remove(id)
       db_man.update_targets(db,id,hiders)
       for hider in hiders:
