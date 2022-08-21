@@ -64,7 +64,13 @@ class HideAndSeek:
         db_man.update_targets(db,seeker,hiders)
     else:
       print("     -no hiders left, reassigning")
-      hiders = all_ids.remove(id)
+      hiders = []
+      for player in all_ids:
+        if player == id:
+          print("     -not adding [" + player + "] to hiders, they are now the sole seeker")
+        else:
+          print("     -adding [" + player + "] to hiders")
+          hiders.append(player)
       print("     -new hiders = " + str(hiders))
       print("     -new seeker = " + id)
       for hider in hiders:
