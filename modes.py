@@ -107,7 +107,7 @@ class Tag:
   def assign_targets(self):
     print("Assigning targets for gamemode [tag]")
     db = db_man.init_SQL()
-    players = db_man.get_players(db,self.code)
+    players = [player[0] for player in db_man.get_players(db,self.code)]
     rs(players)
     print(players)
     for i in range(0,len(players)-1):
