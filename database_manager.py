@@ -49,8 +49,11 @@ def init_SQL():
   return((c,con))
 
 def end_query(package):
-  c,con = package
-  c.close()
+  try:
+    c,con = package
+    c.close()
+  except:
+    print("{ERROR CLOSING CONNECTION}")
   
 def confirm_tables(package):
   c,con = package
