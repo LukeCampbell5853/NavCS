@@ -114,7 +114,7 @@ def update_state():
       db_man.save(db)
       print("mode: [" + mode + "]")
       if mode == "HaS" or mode == "Tag":
-        if mode == "Has":
+        if mode == "HaS":
           print("  >game is 'hide and seek'")
           program = modes.HideAndSeek(id)
         else:
