@@ -67,7 +67,6 @@ def create():
 def submit_application():
   data = request.data
   time,date,timeadj,hours,minutes,mode = str(data).strip("b").strip("'").split(",")
-  print("creating game mode [" + mode + "]")
   H,M = [int(x) for x in time.split(":")]
   y,m,d = [int(x) for x in date.split("-")]
   start = db_man.time_object(0,M,H,d,m,y) + timedelta(minutes = int(timeadj))
@@ -83,15 +82,6 @@ def submit_application():
     return(code)
   else:
     return("!")
-
-@app.route("/admin_test",methods=["POST","GET"])
-
-def admin_test():
-  db = db_man.init_SQL()
-  print(db_man.get_codes(db))
-  db_man.all_players(db)
-  db_man.end_query(db)
-  return(render_template("home.html"))
 
 @app.route("/run")
 
@@ -112,22 +102,15 @@ def update_state():
       db_man.update_location(db,id,loc_string)
       mode = db_man.get_mode(db,game)
       db_man.save(db)
-      print("mode: [" + mode + "]")
       if mode == "HaS" or mode == "Tag":
         if mode == "HaS":
-          print("  >game is 'hide and seek'")
           program = modes.HideAndSeek(id)
         else:
-          print("  >game is 'tag'")
           program = modes.Tag(id)
         if not program.assigned():
           program.assign_targets()
         db = db_man.init_SQL()
-        try:
-          targets = db_man.get_target_locations(db,id)
-        except:
-          targets = []
-          print("error getting targets")
+        targets = db_man.get_target_locations(db,id)
         db_man.save(db)
         if len(targets)>0:
           return({"info":targets})
@@ -148,7 +131,6 @@ def update_state():
 
 def register_catch():
   id = str(request.data).strip("b").strip("'")
-  print("RUNNING register_catch FOR id=" + id)
   
   db = db_man.init_SQL()
   game = db_man.get_code(db,id)
@@ -162,7 +144,7 @@ def register_catch():
       mode = db_man.get_mode(db,game)
       if mode == "HaS" or mode == "Tag":
         db_man.end_query(db)
-        if mode == "Has":
+        if mode == "HaS":
           print("  >game is 'hide and seek'")
           program = modes.HideAndSeek(id)
         else:
