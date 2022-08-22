@@ -120,8 +120,10 @@ class Tag:
   def register_catch(self,id):  
     players = db_man.get_players(db,self.code)
     new_index = r(0,len(players)-1)
-    while id == players[new_index]:
+    timeout_count = 0
+    while id == players[new_index] and timeout_count < 10:
       new_index = r(0,len(players)-1)
+      timeout_count += 1
     new_target = players[new_index]
     db = db_man.init_SQL()
     db_man.update_targets(db,id,new_target)
