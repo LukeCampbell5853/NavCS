@@ -154,6 +154,7 @@ def register_catch():
       db = db_man.init_SQL()
       mode = db_man.get_mode(db,game)
       if mode == "HaS" or mode == "Tag":
+        db_man.end_query(db)
         if mode == "Has":
           print("  >game is 'hide and seek'")
           program = modes.HideAndSeek(id)
