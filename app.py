@@ -67,6 +67,7 @@ def create():
 def submit_application():
   data = request.data
   time,date,timeadj,hours,minutes,mode = str(data).strip("b").strip("'").split(",")
+  print("creating game mode [" + mode + "]")
   H,M = [int(x) for x in time.split(":")]
   y,m,d = [int(x) for x in date.split("-")]
   start = db_man.time_object(0,M,H,d,m,y) + timedelta(minutes = int(timeadj))
