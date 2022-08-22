@@ -109,8 +109,8 @@ def update_state():
   if game_state:
     if game_state[0] and not game_state[1]:
       db_man.update_location(db,id,loc_string)
-      db_man.save(db)
       mode = db_man.get_mode(db,game)
+      db_man.save(db)
       if mode == "HaS" or mode == "Tag":
         if mode == "Has":
           print("  >game is 'hide and seek'")
