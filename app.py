@@ -121,7 +121,11 @@ def update_state():
         if not program.assigned():
           program.assign_targets()
         db = db_man.init_SQL()
-        targets = db_man.get_target_locations(db,id)
+        try:
+          targets = db_man.get_target_locations(db,id)
+        except:
+          targets = []
+          print("error getting targets")
         db_man.save(db)
         if len(targets)>0:
           return({"info":targets})
