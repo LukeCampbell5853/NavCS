@@ -111,7 +111,7 @@ class Tag:
     rs(players)
     print(players)
     for i in range(0,len(players)-1):
-      if i < len(players-1):
+      if i < len(players)-1:
         db_man.update_targets(db,players[i],players[i+1])
       else:
         db_man.update_targets(db,players[i],players[0])
