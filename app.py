@@ -120,6 +120,7 @@ def update_state():
           program = modes.Tag(id)
         if not program.assigned():
           program.assign_targets()
+        db = db_man.init_SQL()
         targets = db_man.get_target_locations(db,id)
         db_man.save(db)
         if len(targets)>0:
