@@ -112,12 +112,14 @@ class Tag:
     print(players)
     for i in range(0,len(players)-1):
       if i < len(players)-1:
+        print("assigning [" + players[i+1] +"] to [" + players[i] + "]")
         db_man.update_targets(db,players[i],[players[i+1]])
       else:
         db_man.update_targets(db,players[i],[players[0]])
+        print("assigning [" + players[0] +"] to [" + players[i] + "]")
     db_man.save(db)
   
-  def register_catch(self,id):  
+  def register_catch(self,id):
     players = db_man.get_players(db,self.code)
     new_index = r(0,len(players)-1)
     timeout_count = 0
