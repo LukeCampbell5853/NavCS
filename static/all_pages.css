@@ -39,3 +39,37 @@ html, body {
   background-color:rgb(28,117,188);
   padding-bottom:6vh;
 }
+
+#content{
+  margin:5vw;
+  width:90vw;
+  min-height:70vh;
+  background-color:white;
+  padding:5vw;
+  font-size:2vh;
+}
+
+#content>h1{
+  font-size:4vh;
+  margin:0;
+  margin-bottom:1vh;
+}
+
+#content>p{
+  font-size:1.5vh;
+  margin:0;
+  margin-bottom:2vh;
+}
+
+
+#content>a{
+  font-size:2vh;
+  padding:2vh;
+  color:white;
+  line-height:12vh;
+  background-color:rgb(30,30,30);
+}
+
+#content>a:hover{
+  background-color:rgb(28,117,188);
+}
