@@ -110,7 +110,6 @@ class Tag:
     players = [player[0] for player in db_man.get_players(db,self.code)]
     rs(players)
     print(players)
-    print("max i = " + str(len(players)-1)
     for i in range(0,len(players)):
       print(i)
       if i < len(players)-1:
