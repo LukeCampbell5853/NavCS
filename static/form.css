@@ -1,0 +1,66 @@
+body{
+  background-image:url("public_domain_map.jpg");
+  background-size: cover;
+}
+
+#form{
+  margin:5vw;
+  width:90vw;
+  min-height:70vh;
+  background-color:white;
+  padding:5vw;
+  font-size:2vh;
+}
+
+#form>h1{
+  font-size:4vh;
+  margin:0;
+  margin-bottom:1vh;
+}
+
+#form>p{
+  font-size:1.5vh;
+  margin:0;
+  margin-bottom:2vh;
+}
+
+.input_row{
+  display:table;
+  width:80vw;
+  overflow:clip;
+}
+
+.input_row>div{
+  display:table-cell;
+  padding:1vh;
+}
+
+.input_row>div>*{
+  font-size:2vh;
+}
+
+.label{
+  width:1px;
+}
+
+.input>input,select{
+  width:100%;
+  height:3vh;
+}
+
+.double_input>input{
+  width:100%;
+  height:3vh;
+}
+
+#form>a{
+  font-size:2vh;
+  padding:2vh;
+  color:white;
+  line-height:12vh;
+  background-color:rgb(30,30,30);
+}
+
+#form>a:hover{
+  background-color:rgb(28,117,188);
+}
