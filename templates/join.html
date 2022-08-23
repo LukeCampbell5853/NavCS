@@ -4,8 +4,9 @@
     <title>NavCS - join</title>
     <link rel="shortcut icon" href="{{url_for('static', filename='NavCS_logo_icon.svg')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='all_pages.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='form.css')}}">
   </head>
-  <body>
+  <body style="background-image:url({{url_for('static', filename='public_domain_map.jpg')}}); background-size: cover;">
     <div id="header">
       <img src="{{url_for('static', filename='NavCS_logo_text.svg')}}">
       <div>
@@ -13,15 +14,45 @@
         <a href="/create">Book</a>
       </div>
     </div>
-    <p id="message">Please enter your details to join a game:</p>
-    <label for="f_name">First name: </label>
-    <input id="f_name" name="f_name"/><br><br>
-    <label for="l_name">Last name: </label>
-    <input id="l_name" name="l_name"/><br><br>
-    <label for="code">Join code: </label>
-    <input id="code" name="code"/><br><br>
-    <button onclick="join()"/>join game</button><br>
-    <a href="/">Back to home>></a>
+    
+    <div id="form">
+      <h1>Join a game</h1>
+      <p id="message">Please enter your details to join a game:</p>
+      <div class="input_row">
+        <div class="label">
+          
+        </div>
+        <div class="input">
+          
+        </div>
+      </div>
+      
+      <div class="input_row">
+        <div class="label">
+          <label for="f_name">First name:</label>
+        </div>
+        <div class="input">
+          <input id="f_name" name="f_name"/>
+        </div>
+      </div>
+      <div class="input_row">
+        <div class="label">
+          <label for="l_name">Last name:</label>
+        </div>
+        <div class="input">
+          <input id="l_name" name="l_name"/>
+        </div>
+      </div>
+      <div class="input_row">
+        <div class="label">
+          <label for="code">Join code:</label>
+        </div>
+        <div class="input">
+          <input id="code" name="code"/>
+        </div>
+      </div>
+      <a onclick="join()"/>join game</a>
+    </div>
     <script src="{{url_for('static', filename='join.js')}}"></script>
   </body>
 </html>
