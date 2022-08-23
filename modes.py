@@ -110,7 +110,9 @@ class Tag:
     players = [player[0] for player in db_man.get_players(db,self.code)]
     rs(players)
     print(players)
-    for i in range(0,len(players)-1):
+    print("max i = " + str(len(players)-1)
+    for i in range(0,len(players)):
+      print(i)
       if i < len(players)-1:
         print("assigning [" + players[i+1] +"] to [" + players[i] + "]")
         db_man.update_targets(db,players[i],[players[i+1]])
