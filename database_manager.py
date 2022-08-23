@@ -235,6 +235,7 @@ def get_target_locations(package,id):
   c.execute("SELECT target FROM players WHERE ip=?",(id,))
   targets  = c.fetchall()
   print(type(targets))
+  print(targets)
   targets = targets[0][0]
   data = []
   if targets != "-":
