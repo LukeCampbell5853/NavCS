@@ -126,5 +126,5 @@ class Tag:
       timeout_count += 1
     new_target = players[new_index]
     db = db_man.init_SQL()
-    db_man.update_targets(db,id,new_target)
+    db_man.update_targets(db,id,[new_target])
     db_man.save()
