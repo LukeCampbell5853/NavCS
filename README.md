@@ -7,5 +7,3 @@ If you're interested I'm afraid the code is very messy (I'll fix that soon), but
 
 Thanks,
 -NavCS team
-
-p.s. the name NavCS probably wont stay for long, so if you want to search us up later we may not be using the name NavCS.
