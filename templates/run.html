@@ -16,9 +16,12 @@
         <a href="/join">Join</a>
       </div>
     </div>
-    <p id="state_message">There was an error connecting to the server.</p>
-    <a id="register_catch_button" onclick="register_catch()">I got caught</a>
-    <div id="map" src="" style="width:95vw;height:50vw;"></div>
+    <div id="content">
+      <h1>Play</h1>
+      <p id="state_message">Connecting to server...</p>
+      <div id="map" src=""></div>
+      <a id="register_catch_button" onclick="register_catch()">I got caught</a>
+    </div>
     <script>
       {
         var green_target = L.icon({
