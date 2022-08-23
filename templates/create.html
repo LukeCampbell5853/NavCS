@@ -4,6 +4,7 @@
     <title>NavCS - create game</title>
     <link rel="shortcut icon" href="{{url_for('static', filename='NavCS_logo_icon.svg')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='all_pages.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='form.css')}}">
   </head>
   <body onload="set_max_date()">
     <div id="header">
@@ -13,18 +14,53 @@
         <a href="/join">Join</a>
       </div>
     </div>
-    <p id="message"></p>
-    <label for="timeval">Time: </label><input type="time" id="time_val"><p id="time_indicator"></p>
-    <label for="dateval">Date: </label><input type="date" id="date_val"><p id="date_indicator"></p>
-    <label for="hours">Duration: </label><input type="number" max="8" min="0" value="1" id="hours">:<input type="number" max = "59" min="0" value="0" id="minutes"><p id="duration_indicator"></p>
-    <label for="mode">Mode: </label><select name="mode" id="mode">
-      <option value="HaS">Hide and seek</option>
-      <option value="Tag">Tips</option>
-      <!--<option value=""></option>-->
-    </select><p id="mode_indicator"></p>
-    <button id="go" onclick="submit()">Create</button>
-    <p id="code_indicator"></p>
-    <a href="/">Back to home>></a>
+    <div id="form">
+      <h1>Create a game</h1>
+      <p>Set your start time and mode.</p>
+      
+      <div class="input_row">
+        <div class="label">
+          <label for="timeval">Time:</label>
+        </div>
+        <div class="input">
+          <input type="time" id="time_val"><p id="time_indicator"></p>
+        </div>
+      </div>
+      <p id="message"></p>
+      <div class="input_row">
+        <div class="label">
+          <label for="dateval">Date:</label>
+        </div>
+        <div class="input">
+          <input type="date" id="date_val"><p id="date_indicator"></p>
+        </div>
+      </div>
+      <div class="input_row">
+        <div class="label">
+          <label for="hours">Duration:</label>
+        </div>
+        <div class="double_input">
+          <input type="number" max="8" min="0" placeholder="hours" id="hours">
+        </div>
+        <div class="double_input">
+          <input type="number" max="59" min="0" placeholder="minutes" id="minutes"><p id="duration_indicator"></p>
+        </div>
+      </div>
+      <div class="input_row">
+        <div class="label">
+          <label for="mode">Mode:</label>
+        </div>
+        <div class="input">
+          <select name="mode" id="mode">
+        <option value="HaS">Hide and seek</option>
+        <option value="Tag">Tips</option>
+      </select><p id="mode_indicator"></p>
+        </div>
+      </div>
+      
+      <a id="go" onclick="submit()">Create</button>
+      <p id="code_indicator"></p>
+    </div>
     <script src="{{url_for('static', filename='create.js')}}"></script>
   </body>
 </html>
