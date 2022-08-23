@@ -32,6 +32,7 @@
 
 .input_row>div>*{
   font-size:2vh;
+  white-space:nowrap;
 }
 
 .label{
