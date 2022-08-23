@@ -5,7 +5,6 @@ function set_max_date(){
 }
 
 function submit() {
-  console.log("running submission")
   var time = document.getElementById("time_val").value;
   var date = document.getElementById("date_val").value;
   var hours = document.getElementById("hours").value;
