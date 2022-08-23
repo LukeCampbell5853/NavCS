@@ -15,7 +15,7 @@ function submit() {
   let timeadj = d.getTimezoneOffset();
 
   if (time == "" || date == "" || hours == "" || minutes == ""){
-    alert("Please fill out all fields");
+    document.getElementById("message").innerHTML = "Please fill out all fields.";
   }
   else{
     const data = [time,date,timeadj,hours,minutes,mode]
@@ -28,7 +28,7 @@ function submit() {
           document.getElementById("message").innerHTML = "Sorry, there was an error creating your game. If your game has a start date and time in the past, please change this.";
         }
         else{
-          document.getElementById("message").innerHTML = "Your game is being created, access it with the code '" + code + "'. Enjoy!";
+          document.getElementById("message").innerHTML = "Your game is being created, access it with the code '" + code + "'.";
           document.getElementById("go").remove();
         }
       }
