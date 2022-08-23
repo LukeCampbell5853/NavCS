@@ -76,7 +76,6 @@ html, body {
 }
 
 #map{
-  border:1px solid black;
   width:100%;
   height:59.5vh;
 }
