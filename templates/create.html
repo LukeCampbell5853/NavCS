@@ -16,23 +16,22 @@
     </div>
     <div id="form">
       <h1>Create a game</h1>
-      <p>Set your start time and mode.</p>
+      <p id="message">Set your start time and mode.</p>
       
       <div class="input_row">
         <div class="label">
           <label for="timeval">Time:</label>
         </div>
         <div class="input">
-          <input type="time" id="time_val"><p id="time_indicator"></p>
+          <input type="time" id="time_val">
         </div>
       </div>
-      <p id="message"></p>
       <div class="input_row">
         <div class="label">
           <label for="dateval">Date:</label>
         </div>
         <div class="input">
-          <input type="date" id="date_val"><p id="date_indicator"></p>
+          <input type="date" id="date_val">
         </div>
       </div>
       <div class="input_row">
@@ -43,7 +42,7 @@
           <input type="number" max="8" min="0" placeholder="hours" id="hours">
         </div>
         <div class="double_input">
-          <input type="number" max="59" min="0" placeholder="minutes" id="minutes"><p id="duration_indicator"></p>
+          <input type="number" max="59" min="0" placeholder="minutes" id="minutes">
         </div>
       </div>
       <div class="input_row">
@@ -54,12 +53,11 @@
           <select name="mode" id="mode">
         <option value="HaS">Hide and seek</option>
         <option value="Tag">Tips</option>
-      </select><p id="mode_indicator"></p>
+      </select>
         </div>
       </div>
       
       <a id="go" onclick="submit()">Create</a>
-      <p id="code_indicator"></p>
     </div>
     <script src="{{url_for('static', filename='create.js')}}"></script>
   </body>
