@@ -20,7 +20,7 @@ function update() {
   } else if (navigator.geolocation) { 
     console.warn("user not yet logged in");
     message.innerHTML = "Unfortunately we could not find your log in details.";
-    link.visibility = invisible;
+    link.style.display = "none";
   } else{
     console.warn("nav unavaliable");
     message.innerHTML = "Navigation is unavaliable.";
