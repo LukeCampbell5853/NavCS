@@ -1,8 +1,7 @@
 .input_row{
   display:table;
-  width:80vw;
+  width:100vw-12vh;
   overflow:clip;
-  border:1px solid red;
 }
 
 .input_row>div{
