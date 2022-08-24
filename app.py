@@ -92,6 +92,7 @@ def run():
 
 def update_state():
   lat,long,id = str(request.data).strip("b").strip("'").split(",")
+  print("updating state for [" + id + "]")
   lat,long = float(lat),float(long)
   db = db_man.init_SQL()
   game = db_man.get_code(db,id)
