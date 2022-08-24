@@ -105,19 +105,14 @@ class Tag:
     return(result)
   
   def assign_targets(self):
-    print("Assigning targets for gamemode [tag]")
     db = db_man.init_SQL()
     players = [player[0] for player in db_man.get_players(db,self.code)]
     rs(players)
-    print(players)
     for i in range(0,len(players)):
-      print(i)
       if i < len(players)-1:
         print("assigning [" + players[i+1] +"] to [" + players[i] + "]")
-        db_man.update_targets(db,players[i],[players[i+1]])
       else:
         db_man.update_targets(db,players[i],[players[0]])
-        print("assigning [" + players[0] +"] to [" + players[i] + "]")
     db_man.save(db)
   
   def register_catch(self,id):
