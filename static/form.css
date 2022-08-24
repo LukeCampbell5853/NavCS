@@ -7,6 +7,7 @@
 .input_row>div{
   display:table-cell;
   padding:1vh;
+  padding-left:0;
 }
 
 .input_row>div>*{
