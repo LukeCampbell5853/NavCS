@@ -2,6 +2,7 @@
   display:table;
   width:80vw;
   overflow:clip;
+  border:1px solid red;
 }
 
 .input_row>div{
