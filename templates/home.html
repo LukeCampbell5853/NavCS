@@ -2,29 +2,53 @@
 <html>
   <head>
     <title>NavCS - home</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
-    <script src="{{url_for('static', filename='location.js')}}"></script>
     <link rel="shortcut icon" href="{{url_for('static', filename='NavCS_logo_icon.svg')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='all_pages.css')}}">
   </head>
     
   <body onload="getLocation()">
-    <div id="header">
+    <div id="header" class="topfixed">
       <img src="{{url_for('static', filename='NavCS_logo_text.svg')}}">
       <div>
         <a href="/create">Book</a>
         <a href="/join">Join</a>
       </div>
     </div>
-    <a href="/run">Go to game to test>></a>
-    <p>Please check if your GPS is working accurately by reading the map below and verifying it shows your location. If it does not please do not join, as you can imagine it would make gameplay difficult for your teammates if your GPS says you are somewhere you are not.</p>
-    <a href="/create">Book a game>></a><br><br>
-    <a id="cont_link" href="/join"></a><br><br>
-    <p id="coordinates">location: </p>
-    <div id="map" src="" style="width:95vw;height:50vw;"></div>
-    <form action="/admin_test" method="POST">
-      <input type="submit" value="admin">
-    </form>
+    <div class="topspacer"></div>
+    <div class="chapter">
+      <h1>Intro</h1>
+      <p>NavCS is a system which utilises GPS to provide a platform for navigation games, from hide and seek around the neighbourhood with the kids to city-wide games of tag, and everything in between. The system is minimalist and to allow the users to have the freedom to do anything, anywhere.</p>
+    </div>
+
+    <div class="chapter">
+      <h1>Help</h1>
+      <p>
+        To start a game follow the steps below:
+        <ul>
+          <li>Decide on a game mode (see section below for more details). This will determine how the target assignment and reassignment functions</li>
+          <li>Book a game <a href="/create">here</a>, and set the mode, start time, and duration whic suits you. Once you have done this press 'create'.</li>
+          <li>Copy the code which appears in the message below 'Create a game' and send it to your friends.</li>
+          <li>Make sure to tell them any rules beyond the scope of the system such as: don't go past these suburbs; use trains but not busses; no concealing your face from your chaser; etc.</li>
+        </ul>
+      </p>
+      <p>
+        And to join a game follow these steps <u>before</u> the game begins:
+        <ul>
+          <li>Navigate to the 'join' page found <a href="/join">here</a> and enter in your details.</li>
+          <li>Enter the code the game organiser sent you and press 'join'.</li>
+          <li>You will see a green target on your location, and after the game starts (depending on the game mode) you'll see a red target (if you are a chaser/seeker) which shows the location of your target.</li>
+          <li>Keep the website open and you'll remain connected to the server.</li>
+          <li>If you get caught press the button at the bottom of the screen and the server will adjust the targets automatically.</li>
+        </ul>
+      </p>
+    </div>
+
+    <div class="chapter">
+      <h1>Modes</h1>
+      <p><b>Hide and seek</b><br>
+        In this game mode one player is randomly selected as the seeker, and they have all the locations of the hiders. Once they tag a hider the hider presses a button on their phone and the server makes them a seeker. Once the last hider is caught they become the new seeker and the rest become hiders. This process repeats until the game finishes.</p>
+      <p><b>Tag</b><br>
+        In this game mode each player is assigned a target to chase (and therefore each player has someone chasing them). Once they 'tag' a player the tagged player presses the button at the bottom of their screen and the tagger gets randomly assigned a new target. This process continues until the game finishes.</p>
+    </div>
   </body>
 </html>
