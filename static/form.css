@@ -1,6 +1,7 @@
 .input_row{
   display:table;
   width:calc(100vw-12vh);
+  border:1px solid red;
   overflow:clip;
 }
 
