@@ -1,6 +1,6 @@
 .input_row{
   display:table;
-  width:100vw-12vh;
+  width:calc(100vw-12vh);
   overflow:clip;
 }
 
