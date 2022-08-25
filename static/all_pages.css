@@ -2,6 +2,7 @@ html, body {
   height: 100%;
   width: 100%;
   margin:0;
+  background-color:white;
 }
 
 *{
@@ -74,8 +75,7 @@ html, body {
 
 #content{
   margin:3vh;
-  width:100vw-10vh;
-  height:84vh;
+  height:87vh;
   background-color:white;
   padding:3vh;
   font-size:2vh;
