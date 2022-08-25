@@ -47,14 +47,14 @@
           <input id="code" name="code"/>
         </div>
       </div>
-      <a class="nlink" onclick="modal()"/>Join game</a>
+      <a class="nlink" onclick="join()"/>Join game</a>
     </div>
   
     <div id="modal" class="chapter">
       <h1>Cookies and location</h1>
       <p>NavCS requires access to location and cookies to run, and will not work properly without them. If the system isn't working probably you can try changing your settings to allow these. Additionally your device may not have the data to connect to a server regularly, so you may want to check your data levels.</p>
       <p>If you aren't happy for NavCS to save cookies and access your location click <a href="/index.html">here</a> and you will be taken back to the home page.</p>
-      <a class="nlink" onclick="join()">Continue</a>
+      <a class="nlink" href="/run">Continue</a>
     </div>
     <script src="{{url_for('static', filename='join.js')}}"></script>
   </body>
