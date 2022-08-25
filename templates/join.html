@@ -11,7 +11,7 @@
       viewport.setAttribute("content", viewport.content + ", height=" + window.innerHeight);
     </script>
   </head>
-  <body style="background-image:url({{url_for('static', filename='public_domain_map.jpg')}}); background-size: cover;">
+  <body style="background-image:url({{url_for('static', filename='public_domain_map.jpg')}}); background-size: cover; overflow:clip;">
     <div id="header">
       <img src="{{url_for('static', filename='NavCS_logo_text.svg')}}">
       <div>
