@@ -1,7 +1,7 @@
 function modal(){
   var name = document.getElementById("f_name").value + " " + document.getElementById("l_name").value;
   var code = document.getElementById("code").value;
-  if (name != "" && code != ""){
+  if (name != " " && code != ""){
     document.getElementById("message").innerHTML = "Please fill in all fields.";
   } else {
     document.getElementById("modal").style.visibility = "visible";
