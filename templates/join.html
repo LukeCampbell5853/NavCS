@@ -22,16 +22,7 @@
     
     <div id="content">
       <h1>Join a game</h1>
-      <p id="message">Please enter your details to join a game:</p>
-      <div class="input_row">
-        <div class="label">
-          
-        </div>
-        <div class="input">
-          
-        </div>
-      </div>
-      
+      <p id="message">Please enter your details to join a game:</p>      
       <div class="input_row">
         <div class="label">
           <label for="f_name">First name:</label>
@@ -56,7 +47,7 @@
           <input id="code" name="code"/>
         </div>
       </div>
-      <a onclick="join()"/>join game</a>
+      <a class="nlink" onclick="join()"/>join game</a>
     </div>
     <script src="{{url_for('static', filename='join.js')}}"></script>
   </body>
