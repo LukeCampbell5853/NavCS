@@ -1,3 +1,7 @@
+function modal(){
+  document.getElementById("modal").style.visibility = "visible";
+}
+
 function join(){
   var name = document.getElementById("f_name").value + " " + document.getElementById("l_name").value;
   var code = document.getElementById("code").value;
