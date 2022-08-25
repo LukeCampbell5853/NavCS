@@ -40,7 +40,7 @@ function join(){
       else {
         console.log("user logged with id: " + resp);
         document.cookie = "id:"+resp +";";
-        location.href = "/run";
+        document.getElementById("modal").style.visibility = "visible";
       }
     }
   }
