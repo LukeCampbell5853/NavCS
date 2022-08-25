@@ -10,9 +10,14 @@ function modal(){
 }
 
 function join(){
-  var name = document.getElementById("f_name").value + " " + document.getElementById("l_name").value;
+  var f_name = document.getElementById("f_name").value;
+  var l_name = document.getElementById("l_name").value;
+  var name = f_name + " " + l_name;
   var code = document.getElementById("code").value;
   
+  if (f_name == "" || code == ""){
+    document.getElementById("message").innerHTML = "Please fill in all required fields."
+  } else {
   const data = [name,code];
   console.log(data)
   
@@ -45,4 +50,5 @@ function join(){
     }
   }
   req.send(data);
+  }
 }
