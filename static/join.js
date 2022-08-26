@@ -12,7 +12,7 @@ function join(){
     document.getElementById("message").innerHTML = "Please fill in all required fields."
   } else if (!(navigator.cookieEnabled)){
     message.innerHTML = "Please enable cookies to play.";
-  } else if (!(navigator.location)){
+  } else if (!(navigator.geolocation)){
     message.innerHTML = "Please enable location to play.";
   } else {
     const data = [name,code];
