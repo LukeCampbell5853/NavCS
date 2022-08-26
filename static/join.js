@@ -5,9 +5,15 @@ function join(){
   var l_name = document.getElementById("l_name").value;
   var name = f_name + " " + l_name;
   var code = document.getElementById("code").value;
+  navigator.geolocation.getCurrentPosition(nothing)
+  document.cookie = "id:;";
   
   if (f_name == "" || code == ""){
     document.getElementById("message").innerHTML = "Please fill in all required fields."
+  } else if (!(navigator.cookieEnabled)){
+    message.innerHTML = "Please enable cookies to play.";
+  } else if (!(navigator.location)){
+    message.innerHTML = "Please enable location to play.";
   } else {
     const data = [name,code];
     console.log(data)
@@ -32,15 +38,8 @@ function join(){
         }
         else {
           console.log("user logged with id: " + resp);
-          navigator.geolocation.getCurrentPosition(nothing)
-          document.cookie = "id:"+resp +";";
-          if (!(navigator.cookieEnabled)){
-            message.innerHTML = "Please enable cookies to play.";
-          } else if (!(navigator.location)){
-            message.innerHTML = "Please enable location to play.";
-          } else{
-            window.location.href = "/run";
-          }
+          document.cookie = "id:"+resp+";";
+          window.href = "/run";
         }
       }
     }
