@@ -110,8 +110,10 @@ class Tag:
     rs(players)
     for i in range(0,len(players)):
       if i < len(players)-1:
+        print("assigning [" + players[i+1] + "] to [" + players[i] + "]")
         db_man.update_targets(db,players[i],[players[i+1]])
       else:
+        print("assigning [" + players[0] + "] to [" + players[i] + "]")
         db_man.update_targets(db,players[i],[players[0]])
     db_man.save(db)
   
