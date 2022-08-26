@@ -39,7 +39,7 @@ function join(){
         else {
           console.log("user logged with id: " + resp);
           document.cookie = "id:"+resp+";";
-          window.href = "/run";
+          window.location.href = "/run";
         }
       }
     }
