@@ -118,8 +118,10 @@ class Tag:
     db_man.save(db)
   
   def register_catch(self,id):
+    print("REGESTERING CATCH")
     db = db_man.init_SQL()
-    players = db_man.get_players(db,self.code)
+    old_target = 
+    players = [player[0] for player in db_man.get_players(db,self.code)]
     new_index = r(0,len(players)-1)
     timeout_count = 0
     while id == players[new_index] and timeout_count < 10:
