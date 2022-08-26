@@ -30,12 +30,13 @@ function join(){
         }
         else {
           console.log("user logged with id: " + resp);
+          navigator.geolocation.getCurrentPosition()
+          document.cookie = "id:"+resp +";";
           if (!(navigator.cookieEnabled)){
             message.innerHTML = "Please enable cookies to play.";
           } else if (!(navigator.location)){
             message.innerHTML = "Please enable location to play.";
           } else{
-            document.cookie = "id:"+resp +";";
             window.location.href = "/run";
           }
         }
