@@ -248,3 +248,14 @@ def get_target_locations(package,id):
         mini_json = {"id":target,"name":name,"lat":lat,"long":long}
         data.append(mini_json)
   return(data)
+
+def get_player_targets(package,id):
+  c,con = package
+  c.execute("SELECT target FROM players WHERE ip=?",(id,))
+  targets  = c.fetchall()
+  targets = targets[0][0]
+  t_list = []
+  if targets != "-":
+    for target in targets.split(";"):
+      t_list.append(target)
+  return(t_list)
