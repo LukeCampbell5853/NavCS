@@ -1,3 +1,5 @@
+function nothing(position){}
+
 function join(){
   var f_name = document.getElementById("f_name").value;
   var l_name = document.getElementById("l_name").value;
@@ -30,7 +32,7 @@ function join(){
         }
         else {
           console.log("user logged with id: " + resp);
-          navigator.geolocation.getCurrentPosition()
+          navigator.geolocation.getCurrentPosition(nothing)
           document.cookie = "id:"+resp +";";
           if (!(navigator.cookieEnabled)){
             message.innerHTML = "Please enable cookies to play.";
