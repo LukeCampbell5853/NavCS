@@ -118,6 +118,7 @@ class Tag:
     db_man.save(db)
   
   def register_catch(self,id):
+    db = db_man.init_SQL()
     players = db_man.get_players(db,self.code)
     new_index = r(0,len(players)-1)
     timeout_count = 0
@@ -125,6 +126,5 @@ class Tag:
       new_index = r(0,len(players)-1)
       timeout_count += 1
     new_target = players[new_index]
-    db = db_man.init_SQL()
     db_man.update_targets(db,id,[new_target])
     db_man.save()
