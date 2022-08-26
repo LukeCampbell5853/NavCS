@@ -249,13 +249,9 @@ def get_target_locations(package,id):
         data.append(mini_json)
   return(data)
 
-def get_player_targets(package,id):
+def get_chaser(package,id):
+  print("+++GET_CHASER+++")
   c,con = package
-  c.execute("SELECT target FROM players WHERE ip=?",(id,))
-  targets  = c.fetchall()
-  targets = targets[0][0]
-  t_list = []
-  if targets != "-":
-    for target in targets.split(";"):
-      t_list.append(target)
-  return(t_list)
+  c.execute("SELECT ip,target FROM players")
+  print(c.fetchall())
+  #THIS FUNCTION IS TO GET THE CHASER(S) OF A PARTICULAR PLAYER, I WILL FINISH IT LATER
