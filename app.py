@@ -31,6 +31,7 @@ def join():
 
 def connect2():
   name,code = str(request.data).strip("b").strip("'").split(",")
+  code = code.lower()
   id = db_man.generate_code();
   
   success = False
