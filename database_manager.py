@@ -256,4 +256,4 @@ def get_chaser(package,id):
   print(c.fetchall())
   #THIS FUNCTION IS TO GET THE CHASER(S) OF A PARTICULAR PLAYER, I WILL FINISH IT LATER
   for player,targets in c.fetchall():
-    print("chasers of [+ " player "] are " + targets)
+    print("chasers of [+ " player + "] are " + targets)
