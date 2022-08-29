@@ -1,5 +1,6 @@
 from flask import *
 from datetime import datetime,timedelta
+import data_manager as db
 import database_manager as db_man
 import modes
 import os
@@ -11,14 +12,6 @@ app = Flask(__name__, static_url_path='/static')
 @app.route("/")
 
 def index():
-  db = db_man.init_SQL()
-  db_man.confirm_tables(db)
-  if db_man.scan_needed():
-    try:
-      db_man.maintain_db(db)
-    except:
-      pass
-  db_man.save(db)
   return(render_template("home.html"))
 
 #Page for players to join a game
@@ -27,36 +20,28 @@ def index():
 def join():
   return(render_template("join.html", message="Please enter your details to join a game:"))
 
-@app.route("/connect2",methods=["POST"])
+@app.route("/connect",methods=["POST"])
 
-def connect2():
+def connect():
   name,code = str(request.data).strip("b").strip("'").split(",")
   code = code.lower()
-  id = db_man.generate_code();
   
   success = False
   error = "[unknown error]"
   
-  db = db_man.init_SQL()
-  game_state = db_man.game_running(db,code)
-  if game_state:
-    started,ended = game_state
-    if started:
-      error = "[game started]"
+  if code in db.all_games():
+    game = db.game(code)
+    if not game.started and not game.finished:
+      me = db.new_player(name,code)
+      return(me.code)
+    elif game.started:
+      return("2")
+    elif game.started:
+      return("3")
     else:
-      success = True
+      return("4")
   else:
-    error = "[invalid code]"
-  db_man.end_query(db)
-  
-  if not success:
-    return(error)
-  else:
-    player = db_man.player(id,name,code)
-    db = db_man.init_SQL()
-    player.register(db)
-    db_man.save(db)
-    return(id)
+    return("1")
 
 @app.route("/create")
 
@@ -73,14 +58,9 @@ def submit_application():
   start = db_man.time_object(0,M,H,d,m,y) + timedelta(minutes = int(timeadj))
   start_str = datetime.strftime(start,"%d/%m/%Y %H:%M:%S")
   duration = int(hours) + int(minutes)/60
-  code = db_man.generate_code()
-  if db_man.is_before(datetime.now(),start):
-    db = db_man.init_SQL()
-    db_man.confirm_tables(db)
-    game = db_man.game(start_str,duration,code,mode)
-    game.register(db)
-    db_man.save(db)
-    return(code)
+  if start > datetime.now():
+    game = db.new_game(start_str,duration,mode)
+    return(game.code)
   else:
     return("!")
 
@@ -92,42 +72,27 @@ def run():
 @app.route("/update_state", methods=["POST","GET"])
 
 def update_state():
-  lat,long,id = str(request.data).strip("b").strip("'").split(",")
-  print("updating state for [" + id + "]")
-  lat,long = float(lat),float(long)
-  db = db_man.init_SQL()
-  game = db_man.get_code(db,id)
-  loc_string = str(lat)+","+str(long)
-  game_state = db_man.game_running(db,game)
-  if game_state:
-    if game_state[0] and not game_state[1]:
-      db_man.update_location(db,id,loc_string)
-      mode = db_man.get_mode(db,game)
-      db_man.save(db)
-      if mode == "HaS" or mode == "Tag":
-        if mode == "HaS":
-          program = modes.HideAndSeek(id)
-        else:
-          program = modes.Tag(id)
-        if not program.assigned():
-          program.assign_targets()
-        db = db_man.init_SQL()
-        targets = db_man.get_target_locations(db,id)
-        db_man.save(db)
-        if len(targets)>0:
-          return({"info":targets})
-        else:
-          return("1") #no active targets
-      else:
-        return("2") #invalid game mode
-    elif not game_state[1]:
-      return("3") #game not started
+  mlat,mlong,id = str(request.data).strip("b").strip("'").split(",")
+  mlat,mlong = float(lat),float(long)
+  
+  player = db.player(id)
+  game = db.game(player.game)
+  if game.started and not game.finished:
+    player.update(lat = mlat, long = mlong)
+    if player.mode == "HaS" or player.mode == "Tag":
+      if player.mode == "HaS":
+        program = modes.HideAndSeek(player)
+      elif:
+        program = modes.Tag(player)
+      if not program.assigned():
+        program.assign_targets()
+      return(program.info)
     else:
-      db_man.end_query(db)
-      return("4") #game finished
+      return("2") #Invalid game mode
+  elif not game.started:
+    return("3") #Game not started
   else:
-    db_man.end_query(db)
-    return("5") #game not found
+    return("4") #Game finished
 
 @app.route("/register_catch", methods=["POST","GET"])
 
