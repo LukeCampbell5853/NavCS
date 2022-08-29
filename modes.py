@@ -19,14 +19,8 @@ class HideAndSeek:
         break
 
   def assign_targets(self):
-    all_players = list(self.players.keys())
-    seeker = all_players[r(0,len(all_players)-1)]
-    hiders = all_players
-    hiders.remove(seeker)
-    self.players[seeker]["target"] = hiders #I think this is superfluous, I need to redesign this function later.
-    db = db_man.init_SQL()
-    db_man.update_targets(db,seeker,hiders)
-    db_man.save(db)
+    rs(self.players)
+        
   
   def register_catch(self,id):
     print("     -REGISTERING CATCH FOR PLAYER [" + id + "]")
