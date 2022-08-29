@@ -67,11 +67,24 @@ def all_games():
   db.end_query()
   return(output)
 
-#Returning a list of all players
+#Return a list of all players
 def all_players():
   #Get data
   db = database()
   db.c.execute("SELECT id FROM players")
+  output = []
+  #Loop through data
+  for code in db.c.fetchall():
+    output.append(code[0])
+  #Close connection
+  db.end_query()
+  return(output)
+
+#Return a list of players in a certain game
+def players(game):
+  #Get data
+  db = database()
+  db.c.execute("SELECT id FROM players WHERE game=?",(game,))
   output = []
   #Loop through data
   for code in db.c.fetchall():
