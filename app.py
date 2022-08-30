@@ -26,7 +26,9 @@ def submit_application():
   time,date,timeadj,hours,minutes,mode = str(data).strip("b").strip("'").split(",")
   H,M = [int(x) for x in time.split(":")]
   y,m,d = [int(x) for x in date.split("-")]
-  start = db_man.time_object(0,M,H,d,m,y) + timedelta(minutes = int(timeadj))
+  duration = round(int(hours)+int(minutes)/60,2)
+  print(duration)
+  start = datetime(y,m,d,H,M) + timedelta(minutes = int(timeadj))
   
   msg = process.create_game(start,duration,mode)
   return(msg)
