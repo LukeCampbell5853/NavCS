@@ -23,18 +23,23 @@ def join_game(name,code):
     return("1")#Invalid game code 
 
 def update(Ilat,Ilong,id):
+  print("RUNNING update")
   me = data.player(id)
   me.update(lat = Ilat,long = Ilong)
-  game = data.game(me.game)
-  if game.started:
-    if game.mode == "HaS":
-      program = mode.HaS(me,game)
-    if not program.assigned:
-      program.assign_targets()
-    info = program.get_info()
-    return(info)
+  if me.game in data.all_games():
+    game = data.game(me.game)
+    if game.started and not game.ended:
+      if game.mode == "HaS":
+        program = mode.HaS(me,game)
+      if not program.assigned:
+        program.assign_targets()
+        print("ASSIGNING TARGETS")
+      info = program.get_info()
+      return(info)
+    else:
+      return("2")#Game not running
   else:
-    return("1")#Game started
+    return("1")#Game not found
 
 def register_catch(id):
   me = data.player(id)
