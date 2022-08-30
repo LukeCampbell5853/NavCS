@@ -24,10 +24,11 @@ function submit() {
     req.onreadystatechange = function(res){
       if (req.readyState == 4 && req.status == 200){
         var code = req.responseText
-        if (code == "!"){
-          document.getElementById("message").innerHTML = "Sorry, there was an error creating your game. If your game has a start date and time in the past, please change this.";
-        }
-        else{
+        if (code == "1"){
+          document.getElementById("message").innerHTML = "Please set your game to start in the future.";
+        } else if (code == "2"){
+          document.getElementByID("message").innerHTML = "An error occured while creating your game.";
+        } else{
           document.getElementById("message").innerHTML = "Your game is being created, access it with the code '" + code + "'.";
           document.getElementById("go").remove();
         }
