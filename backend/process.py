@@ -28,7 +28,7 @@ def update(Ilat,Ilong,id):
   me.update(lat = Ilat,long = Ilong)
   if me.game in data.all_games():
     game = data.game(me.game)
-    if game.started and not game.ended:
+    if game.started and not game.finished:
       if game.mode == "HaS":
         program = mode.HaS(me,game)
       if not program.assigned:
