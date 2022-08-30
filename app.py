@@ -60,7 +60,8 @@ def update_state():
   lat,long,id = str(request.data).strip("b").strip("'").split(",")
   lat,long = float(lat),float(long)
   
-  process.update(lat,long,id)
+  msg = process.update(lat,long,id)
+  return(msg)
 
 @app.route("/register_catch", methods=["POST","GET"])
 
