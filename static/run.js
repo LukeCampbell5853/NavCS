@@ -43,19 +43,17 @@ function communicate(position){
       var data = req.response;
       const message = document.getElementById("state_message");
       if (data == "1"){
-        message.innerHTML = "You are being chased, either keep moving or find a good hiding spot.";
-      } else if (data == "2"){
-        message.innerHTML = "Invalid game mode.";
-      } else if (data == "3"){
-        message.innerHTML = "Waiting for game to start.";
-      } else if (data == "4"){
-        message.innerHTML = "Game finished.";
-      } else if (data == "5"){
         message.innerHTML = "Game not found.";
+      } else if (data == "2"){
+        message.innerHTML = "Game not running.";
       } else {
         const obj = JSON.parse(data);
-        analyse(obj["info"]);
-        message.innerHTML = "Your targets are shown on the map below, go find them!";
+        if (obj.names.length == 0){
+          message.innerHTML = "You are being chased."
+        } else{
+          analyse(obj["info"]);
+          message.innerHTML = "Your targets are shown on the map below, go find them!";
+        }
       }
     }
   }
@@ -76,14 +74,12 @@ function add_marker(lat,long,text,colour){
 
 function analyse(data){
   const json = data
-  if (json.length > 0){
-    for (let i = 0; i < json.length; i++) {
-      let name = json[i].name;
-      let lat = json[i].lat;
-      let long = json[i].long;
-      add_marker(lat,long,name,"red");
-      console.log("chasing player" + name);
-    }
+  for (let i = 0; i < json["names"].length; i++) {
+    let name = json.names[i];
+    let lat = json.locations[i][0];
+    let long = json.locations[i][0];
+    add_marker(lat,long,name,"red");
+    console.log("chasing player" + name);
   }
 }
 
