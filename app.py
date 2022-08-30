@@ -46,7 +46,7 @@ def connect():
   name,code = str(request.data).strip("b").strip("'").split(",")
   code = code.lower()
   
-  msg = process.join_game("Luke Campbell",code)
+  msg = process.join_game(name,code)
   return(msg)
 
 @app.route("/run")
