@@ -29,7 +29,7 @@ function submit() {
         } else if (code == "2"){
           document.getElementByID("message").innerHTML = "An error occured while creating your game.";
         } else{
-          document.getElementById("message").innerHTML = "Your game is being created, access it with the code '" + code + "'.";
+          document.getElementById("message").innerHTML = "Your game is being created, access it with the code <b>" + code + "</b>.";
           document.getElementById("go").remove();
         }
       }
