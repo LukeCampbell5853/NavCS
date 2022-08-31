@@ -48,6 +48,7 @@ function communicate(position){
         message.innerHTML = "Game not running.";
       } else {
         const obj = JSON.parse(data);
+        console.log(obj);
         if (obj.names.length == 0){
           message.innerHTML = "You are being chased."
         } else{
