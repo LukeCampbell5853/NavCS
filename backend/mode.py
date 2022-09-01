@@ -48,13 +48,16 @@ class HaS:
         self.player.update(targets = self.hiders)
 
   def get_info(self):
-    my_json = {"names":[],"locations":[]}
+    objects = []
     targets = self.player.targets
     for target in targets:
       target = data.player(target)
-      my_json["names"].append(target.name)
-      my_json["locations"].append((target.lat,target.long))
-    return(my_json)
+      obj = {}
+      obj["name"] = target.name
+      obj["lat"] = target.lat
+      obj["long"] = target.long
+      objects.append(obj)
+    return({"players":objects})
 
 class Tag:
   def __init__(self,player,game):
