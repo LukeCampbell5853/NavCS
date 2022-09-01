@@ -49,10 +49,10 @@ function communicate(position){
       } else {
         const obj = JSON.parse(data);
         console.log(obj);
-        if (obj.names.length == 0){
+        if (obj.length == 0){
           message.innerHTML = "You are being chased."
         } else{
-          analyse(obj["info"]);
+          analyse(obj.players);
           message.innerHTML = "Your targets are shown on the map below, go find them!";
         }
       }
@@ -74,12 +74,10 @@ function add_marker(lat,long,text,colour){
 }
 
 function analyse(data){
-  const json = data
-  for (let i = 0; i < json["names"].length; i++) {
-    let name = json.names[i];
-    let lat = json.locations[i][0];
-    let long = json.locations[i][0];
-    add_marker(lat,long,name,"red");
+  for (let i = 0; i < data.length; i++) {
+    let player = data[i];
+    console.log("chasing " + player.name + " at " + player.lat + ", " + player.long + ".");
+    add_marker(player.lat,player.long,player.name,"red");
     console.log("chasing player" + name);
   }
 }
