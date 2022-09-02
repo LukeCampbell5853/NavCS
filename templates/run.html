@@ -65,7 +65,7 @@
       
       function remake_map() {
         add_marker(my_lat,my_long,"me","green");
-        data = update();
+        [data,my_lat,my_long] = update();
         if (data == "1"){
           document.getElementById("state_message").innerHTML = "Game not found.";
         } else if (data == "2"){
