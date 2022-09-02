@@ -31,6 +31,10 @@ def update(Ilat,Ilong,id):
     if game.started and not game.finished:
       if game.mode == "HaS":
         program = mode.HaS(me,game)
+      elif game.mode == "Tag":
+        program = mode.Tag(me,game)
+      else:
+        return("1")
       if not program.assigned:
         program.assign_targets()
         print("ASSIGNING TARGETS")
@@ -47,4 +51,6 @@ def register_catch(id):
   if game.started:
     if game.mode == "HaS":
       program = mode.HaS(me,game)
+    elif game.mode == "Tag":
+      program = mode.Tag(me,game)
     program.adjust_targets()
