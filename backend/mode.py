@@ -92,3 +92,15 @@ class Tag:
       while (new_target == player or new_target == player.targets[0]) and timeout < 10:
         new_target = self.players[randint(0,len(self.players))]
       player.update(targets=[new_target])
+  
+  def get_info(self):
+    objects = []
+    targets = self.player.targets
+    for target in targets:
+      target = data.player(target)
+      obj = {}
+      obj["name"] = target.name
+      obj["lat"] = target.lat
+      obj["long"] = target.long
+      objects.append(obj)
+    return({"players":objects})
