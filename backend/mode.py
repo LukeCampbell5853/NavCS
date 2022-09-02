@@ -89,6 +89,6 @@ class Tag:
       player = data.player(chaser)
       new_target = self.players[randint(0,len(self.players))]
       timeout = 0
-      while new_target == player and timeout < 10:
+      while (new_target == player or new_target == player.targets[0]) and timeout < 10:
         new_target = self.players[randint(0,len(self.players))]
       player.update(targets=[new_target])
