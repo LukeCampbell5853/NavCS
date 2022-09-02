@@ -40,7 +40,7 @@ function communicate(position){
   req.onreadystatechange = function(res){
     if (req.readyState == 4 && req.status == 200){
       var data = req.response;
-      return(data);
+      return([data,my_lat,my_long]);
     }
   }
   req.send(my_data);
