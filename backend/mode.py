@@ -77,7 +77,7 @@ class Tag:
   def assign_targets(self):
     for i in range(0,len(self.ids)):
       player = data.player(self.ids[i])
-      if i < len(self.ids):
+      if i < len(self.ids)-1:
         target = self.ids[i+1]
       else:
         target = self.ids[0]
