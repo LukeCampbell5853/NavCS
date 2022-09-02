@@ -23,19 +23,32 @@
       <div id="map" src=""></div>
     </div>
     <script>
-      {
-        var green_target = L.icon({
+      {var green_target = L.icon({
           iconUrl: "{{url_for('static',filename='target_icon_green.svg')}}",
           iconSize:[60, 60],
           iconAnchor:[30,30],
-        });
-      }
-      {
-        var red_target = L.icon({
+        });}
+      {var red_target = L.icon({
           iconUrl: "{{url_for('static',filename='target_icon_red.svg')}}",
           iconSize:[60, 60],
           iconAnchor:[30,30],
-        });
+        });}
+      
+      function add_marker(lat,long,text,colour){
+        if (colour == "green"){
+          L.marker([lat, long], {icon: green_target}).addTo(markers).bindPopup(text);
+        } else{
+          L.marker([lat, long], {icon: red_target}).addTo(markers).bindPopup(text);
+        }
+      }
+
+      function plot_all(data){
+        for (let i = 0; i < data.length; i++) {
+          let player = data[i];
+          console.log("chasing " + player.name + " at " + player.lat + ", " + player.long + ".");
+          add_marker(player.lat,player.long,player.name,"red");
+          console.log("chasing player" + name);
+        }
       }
       
       console.log("initialising")
@@ -51,9 +64,19 @@
       clear_map();
       
       function remake_map() {
-        console.log("running");
-        clear_map();
-        update();
+        add_marker(my_lat,my_long,"me","green");
+        data = update();
+        if (data == "1"){
+          document.getElementById("state_message").innerHTML = "Game not found.";
+        } else if (data == "2"){
+          document.getElementById("state_message").innerHTML = "Game not running.";
+        } else {
+          const obj = JSON.parse(data);
+          console.log(obj);
+          clear_map();
+          document.getElementById("state_message").innerHTML = data.msg;
+          plot_all(data.players);
+        }
       }
       
       setInterval(remake_map, 10000);
