@@ -49,7 +49,7 @@ function communicate(position){
       } else {
         const obj = JSON.parse(data);
         console.log(obj);
-        if (obj.length == 0){
+        if (obj.players.length == 0){
           message.innerHTML = "You are being chased."
         } else{
           analyse(obj.players);
