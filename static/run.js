@@ -34,28 +34,13 @@ function communicate(position){
   var my_lat = position.coords.latitude;
   var my_long = position.coords.longitude;
   const my_data = [my_lat,my_long,my_id];
-  add_marker(my_lat,my_long,"me","green");
 
   const req = new XMLHttpRequest();
   req.open("POST","/update_state");
   req.onreadystatechange = function(res){
     if (req.readyState == 4 && req.status == 200){
       var data = req.response;
-      const message = document.getElementById("state_message");
-      if (data == "1"){
-        message.innerHTML = "Game not found.";
-      } else if (data == "2"){
-        message.innerHTML = "Game not running.";
-      } else {
-        const obj = JSON.parse(data);
-        console.log(obj);
-        if (obj.players.length == 0){
-          message.innerHTML = "You are being chased."
-        } else{
-          analyse(obj.players);
-          message.innerHTML = "Your targets are shown on the map below, go find them!";
-        }
-      }
+      return(data);
     }
   }
   req.send(my_data);
@@ -63,23 +48,6 @@ function communicate(position){
 
 function clear_map(){
   markers.clearLayers();
-}
-
-function add_marker(lat,long,text,colour){
-  if (colour == "green"){
-    L.marker([lat, long], {icon: green_target}).addTo(markers).bindPopup(text);
-  } else{
-    L.marker([lat, long], {icon: red_target}).addTo(markers).bindPopup(text);
-  }
-}
-
-function analyse(data){
-  for (let i = 0; i < data.length; i++) {
-    let player = data[i];
-    console.log("chasing " + player.name + " at " + player.lat + ", " + player.long + ".");
-    add_marker(player.lat,player.long,player.name,"red");
-    console.log("chasing player" + name);
-  }
 }
 
 function register_catch(){
