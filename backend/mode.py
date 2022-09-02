@@ -73,3 +73,22 @@ class Tag:
       if player.targets != []:
         self.assigned = True
         break
+        
+  def assign_targets(self):
+    for i in range(0,len(self.ids)):
+      player = data.player(self.ids[i])
+      if i < len(self.ids):
+        target = self.ids[i+1]
+      else:
+        target = self.ids[0]
+      player.update(targets = [target])
+  
+  def adjust_targets(self,id):
+    me = data.player(id)
+    for chaser in me.chasers:
+      player = data.player(chaser)
+      new_target = self.players[randint(0,len(self.players))]
+      timeout = 0
+      while new_target == player and timeout < 10:
+        new_target = self.players[randint(0,len(self.players))]
+      player.update(targets=[new_target])
