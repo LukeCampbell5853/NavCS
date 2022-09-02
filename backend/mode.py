@@ -57,7 +57,11 @@ class HaS:
       obj["lat"] = target.lat
       obj["long"] = target.long
       objects.append(obj)
-    return({"players":objects})
+    if len(objects) > 0:
+      msg = "You are a seeker.";
+    else:
+      msg = "You are a hider.";
+    return({"players":objects,"msg":msg})
 
 class Tag:
   def __init__(self,player,game):
@@ -103,4 +107,5 @@ class Tag:
       obj["lat"] = target.lat
       obj["long"] = target.long
       objects.append(obj)
-    return({"players":objects})
+    msg = "You are chasing " + self.player.targets[0] + "."
+    return({"players":objects,"msg":msg})
