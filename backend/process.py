@@ -23,7 +23,6 @@ def join_game(name,code):
     return("1")#Invalid game code 
 
 def update(Ilat,Ilong,id):
-  print("RUNNING update")
   me = data.player(id)
   me.update(lat = Ilat,long = Ilong)
   if me.game in data.all_games():
