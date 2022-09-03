@@ -38,7 +38,6 @@ function update() {
   if (navigator.geolocation && cookie != ""){
     console.log("Navigation working and user logged in")
     navigator.geolocation.getCurrentPosition(communicate);
-    console.log(resp);
     link.innerHTML = "I got caught.";
   } else if (navigator.geolocation) { 
     console.warn("user not yet logged in");
@@ -53,12 +52,12 @@ function update() {
 
 function communicate(position){
   console.log("Running communicate")
-  add_marker(my_lat,my_long,"me","green");
   let my_id = get_id();
   
-  var my_lat = position.coords.latitude;
-  var my_long = position.coords.longitude;
-  const my_data = [my_lat,my_long,my_id];
+  var lat = position.coords.latitude;
+  var long = position.coords.longitude;
+  add_marker(my_lat,my_long,"me","green");
+  const my_data = [lat,long,my_id];
 
   const req = new XMLHttpRequest();
   req.open("POST","/update_state");
