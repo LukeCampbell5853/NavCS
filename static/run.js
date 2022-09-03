@@ -21,7 +21,6 @@ function plot_all(data){
     let player = data[i];
     console.log("chasing " + player.name + " at " + player.lat + ", " + player.long + ".");
     add_marker(player.lat,player.long,player.name,"red");
-    console.log("chasing player" + name);
   }
 }
 
@@ -30,13 +29,11 @@ function clear_map(){
 }
 
 function update() {
-  console.log("updating");
   const message = document.getElementById("state_message");
   const link = document.getElementById("register_catch_button");
   cookie = document.cookie;
   
   if (navigator.geolocation && cookie != ""){
-    console.log("Navigation working and user logged in")
     navigator.geolocation.getCurrentPosition(communicate);
     link.innerHTML = "I got caught.";
   } else if (navigator.geolocation) { 
@@ -51,7 +48,6 @@ function update() {
 }
 
 function communicate(position){
-  console.log("Running communicate")
   let my_id = get_id();
   
   var lat = position.coords.latitude;
@@ -62,9 +58,7 @@ function communicate(position){
   req.open("POST","/update_state");
   req.onreadystatechange = function(res){
     if (req.readyState == 4 && req.status == 200){
-      console.log("Got response");
       var data = req.response;
-      console.log(data);
       if (data == "1"){
         document.getElementById("state_message").innerHTML = "Game not found.";
       } else if (data == "2"){
@@ -72,10 +66,10 @@ function communicate(position){
       } else {
         const obj = JSON.parse(data);
         console.log(obj);
-        document.getElementById("state_message").innerHTML = data.msg;
+        document.getElementById("state_message").innerHTML = obj.msg;
         clear_map();
         add_marker(lat,long,"me","green");
-        plot_all(data.players);
+        plot_all(obj.players);
       }
     }
   }
