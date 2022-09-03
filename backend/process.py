@@ -47,7 +47,7 @@ def update(Ilat,Ilong,id):
 def register_catch(id):
   me = data.player(id)
   game = data.game(me.game)
-  if game.started:
+  if game.started and not game.finished:
     if game.mode == "HaS":
       program = mode.HaS(me,game)
     elif game.mode == "Tag":
