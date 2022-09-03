@@ -8,6 +8,27 @@ function go_to_me(position){
   map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
 }
 
+function add_marker(lat,long,text,colour){
+  if (colour == "green"){
+    L.marker([lat, long], {icon: green_target}).addTo(markers).bindPopup(text);
+  } else{
+    L.marker([lat, long], {icon: red_target}).addTo(markers).bindPopup(text);
+  }
+}
+
+function plot_all(data){
+  for (let i = 0; i < data.length; i++) {
+    let player = data[i];
+    console.log("chasing " + player.name + " at " + player.lat + ", " + player.long + ".");
+    add_marker(player.lat,player.long,player.name,"red");
+    console.log("chasing player" + name);
+  }
+}
+
+function clear_map(){
+  markers.clearLayers();
+}
+
 function update() {
   console.log("updating");
   const message = document.getElementById("state_message");
@@ -16,23 +37,23 @@ function update() {
   
   if (navigator.geolocation && cookie != ""){
     console.log("Navigation working and user logged in")
-    resp = navigator.geolocation.getCurrentPosition(communicate);
+    navigator.geolocation.getCurrentPosition(communicate);
     console.log(resp);
     link.innerHTML = "I got caught.";
   } else if (navigator.geolocation) { 
     console.warn("user not yet logged in");
     link.style.display = "none";
-    resp = [{"players":[],"msg":"User not yet logged in."},0,0];
+    message.innerHTML = "Your login details were not found.";
   } else{
     console.warn("nav unavaliable");
     link.innerHTML = "";
-    resp = [{"players":[],"msg":"Please allow GPS to play."},0,0];
+    message.innerHTML = "Please allow GPS to play";
   }
-  return(resp);
 }
 
 function communicate(position){
   console.log("Running communicate")
+  add_marker(my_lat,my_long,"me","green");
   let my_id = get_id();
   
   var my_lat = position.coords.latitude;
@@ -46,14 +67,20 @@ function communicate(position){
       console.log("Got response");
       var data = req.response;
       console.log(data);
-      return([data,my_lat,my_long]);
+      if (data == "1"){
+        document.getElementById("state_message").innerHTML = "Game not found.";
+      } else if (data == "2"){
+        document.getElementById("state_message").innerHTML = "Game not running.";
+      } else {
+        const obj = JSON.parse(data);
+        console.log(obj);
+        clear_map();
+        document.getElementById("state_message").innerHTML = data.msg;
+        plot_all(data.players);
+      }
     }
   }
   req.send(my_data);
-}
-
-function clear_map(){
-  markers.clearLayers();
 }
 
 function register_catch(){
