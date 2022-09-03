@@ -56,7 +56,6 @@ function communicate(position){
   
   var lat = position.coords.latitude;
   var long = position.coords.longitude;
-  add_marker(my_lat,my_long,"me","green");
   const my_data = [lat,long,my_id];
 
   const req = new XMLHttpRequest();
@@ -73,8 +72,9 @@ function communicate(position){
       } else {
         const obj = JSON.parse(data);
         console.log(obj);
-        clear_map();
         document.getElementById("state_message").innerHTML = data.msg;
+        clear_map();
+        add_marker(lat,long,"me","green");
         plot_all(data.players);
       }
     }
