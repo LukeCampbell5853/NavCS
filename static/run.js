@@ -15,7 +15,9 @@ function update() {
   cookie = document.cookie;
   
   if (navigator.geolocation && cookie != ""){
+    console.log("Navigation working and user logged in")
     resp = navigator.geolocation.getCurrentPosition(communicate);
+    console.log(resp);
     link.innerHTML = "I got caught.";
   } else if (navigator.geolocation) { 
     console.warn("user not yet logged in");
@@ -30,6 +32,7 @@ function update() {
 }
 
 function communicate(position){
+  console.log("Running communicate")
   let my_id = get_id();
   
   var my_lat = position.coords.latitude;
@@ -40,7 +43,9 @@ function communicate(position){
   req.open("POST","/update_state");
   req.onreadystatechange = function(res){
     if (req.readyState == 4 && req.status == 200){
+      console.log("Got response");
       var data = req.response;
+      console.log(data);
       return([data,my_lat,my_long]);
     }
   }
