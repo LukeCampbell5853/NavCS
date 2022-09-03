@@ -15,17 +15,18 @@ function update() {
   cookie = document.cookie;
   
   if (navigator.geolocation && cookie != ""){
-    navigator.geolocation.getCurrentPosition(communicate);
+    resp = navigator.geolocation.getCurrentPosition(communicate);
     link.innerHTML = "I got caught.";
   } else if (navigator.geolocation) { 
     console.warn("user not yet logged in");
-    message.innerHTML = "Unfortunately we could not find your log in details.";
     link.style.display = "none";
+    resp = [{"players":[],"msg":"User not yet logged in."},0,0];
   } else{
     console.warn("nav unavaliable");
-    message.innerHTML = "Navigation is unavaliable.";
     link.innerHTML = "";
+    resp = [{"players":[],"msg":"Please allow GPS to play."},0,0];
   }
+  return(resp);
 }
 
 function communicate(position){
