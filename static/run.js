@@ -83,11 +83,6 @@ function register_catch(){
   
   const req = new XMLHttpRequest();
   req.open("POST","/register_catch");
-  req.onreadystatechange = function(res){
-    if (req.readyState == 4 && req.status == 200){
-      console.log(req.response);
-    }
-  }
   req.send(my_id);
 }
 
