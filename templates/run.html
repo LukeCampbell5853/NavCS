@@ -34,23 +34,6 @@
           iconAnchor:[30,30],
         });}
       
-      function add_marker(lat,long,text,colour){
-        if (colour == "green"){
-          L.marker([lat, long], {icon: green_target}).addTo(markers).bindPopup(text);
-        } else{
-          L.marker([lat, long], {icon: red_target}).addTo(markers).bindPopup(text);
-        }
-      }
-
-      function plot_all(data){
-        for (let i = 0; i < data.length; i++) {
-          let player = data[i];
-          console.log("chasing " + player.name + " at " + player.lat + ", " + player.long + ".");
-          add_marker(player.lat,player.long,player.name,"red");
-          console.log("chasing player" + name);
-        }
-      }
-      
       console.log("initialising")
       var map = L.map('map').setView([0, 0], 17);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -58,48 +41,12 @@
         attribution: '© OpenStreetMap'
       }).addTo(map);
       var markers = L.layerGroup().addTo(map);
-      orientate();
       
+      orientate();     
       update();
       clear_map();
       
-      function get_data(){
-        console.log("RUNNING [get_data]");
-         return new Promise((resolve,reject) => {
-            resolve(update());
-         });
-        console.log("END OF [get_data]");
-      }
-      
-      function remake_map(all_data){
-        console.log("RUNNING [remake_map]");
-        console.log(all_data);
-        var data = all_data[0];
-        var my_lat = all_data[2];
-        var my_long = all_data[3];
-        add_marker(my_lat,my_long,"me","green");
-        if (data == "1"){
-          document.getElementById("state_message").innerHTML = "Game not found.";
-        } else if (data == "2"){
-          document.getElementById("state_message").innerHTML = "Game not running.";
-        } else {
-          const obj = JSON.parse(data);
-          console.log(obj);
-          clear_map();
-          document.getElementById("state_message").innerHTML = data.msg;
-          plot_all(data.players);
-        }
-        console.log("END OF [remake_map]");
-      }
-      
-      function update_game(){
-        console.log("RUNNING [update_game]");
-        updated = get_data();
-        updated.then(remake_map);
-        console.log("END OF [update_game]");
-      }
-      
-      setInterval(update_game, 10000);
+      setInterval(update, 10000);
     </script>
   </body>
 </html>
