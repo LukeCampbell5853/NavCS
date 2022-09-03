@@ -91,10 +91,10 @@ class Tag:
     me = data.player(id)
     for chaser in me.chasers:
       player = data.player(chaser)
-      new_target = self.players[randint(0,len(self.players))]
+      new_target = self.ids[randint(0,len(self.ids)-1)]
       timeout = 0
       while (new_target == player or new_target == player.targets[0]) and timeout < 10:
-        new_target = self.players[randint(0,len(self.players))]
+        new_target = self.ids[randint(0,len(self.ids)-1)]
       player.update(targets=[new_target])
   
   def get_info(self):
