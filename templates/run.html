@@ -63,8 +63,13 @@
       update();
       clear_map();
       
-      function remake_map() {
-        const all_data = update();
+      function get_data(){
+         return new Promise((resolve,reject) => {
+            resolve(update());
+         });
+      }
+      
+      function remake_map(all_data){
         console.log(all_data);
         var data = all_data[0];
         var my_lat = all_data[2];
@@ -83,7 +88,12 @@
         }
       }
       
-      setInterval(remake_map, 10000);
+      function update_game(){
+        updated = get_data();
+        updated.then(remake_map);
+      }
+      
+      setInterval(update_game, 10000);
     </script>
   </body>
 </html>
