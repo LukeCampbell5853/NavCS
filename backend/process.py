@@ -52,4 +52,4 @@ def register_catch(id):
       program = mode.HaS(me,game)
     elif game.mode == "Tag":
       program = mode.Tag(me,game)
-    program.adjust_targets()
+    program.adjust_targets(id)
