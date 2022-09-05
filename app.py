@@ -70,7 +70,7 @@ def register_catch():
   
   process.register_catch(id)
 
-#app.route("/finished")
+@app.route("/finished")
 
 def finished():
   return(render_template("finished.html"))
