@@ -63,9 +63,6 @@ function communicate(position){
         document.getElementById("state_message").innerHTML = "Game not found.";
       } else if (data == "2"){
         document.getElementById("state_message").innerHTML = "Waiting for game to start...";
-      } else if (data == "3"){
-        console.log("game finished, relocating.");
-        window.location.href = "/finished";
       } else {
         const obj = JSON.parse(data);
         console.log(obj);
