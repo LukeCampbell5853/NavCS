@@ -87,8 +87,8 @@ class Tag:
         target = self.ids[0]
       player.update(targets = [target])
   
-  def adjust_targets(self,id):
-    me = data.player(id)
+  def adjust_targets(self):
+    me = self.player
     for chaser in me.chasers:
       player = data.player(chaser)
       new_target = self.ids[randint(0,len(self.players)-1)]
