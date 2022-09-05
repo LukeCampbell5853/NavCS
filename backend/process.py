@@ -39,8 +39,10 @@ def update(Ilat,Ilong,id):
         print("ASSIGNING TARGETS")
       info = program.get_info()
       return(info)
+    elif game.finished:
+      return("3")#Game finished
     else:
-      return("2")#Game not running
+      return("2")#Game not started
   else:
     return("1")#Game not found
 
