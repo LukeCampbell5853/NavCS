@@ -68,8 +68,12 @@ def update_state():
 def register_catch():
   id = str(request.data).strip("b").strip("'")
   
-  msg = process.register_catch(id)
-  return(msg)
+  process.register_catch(id)
+
+#app.route("/finished")
+
+def finished():
+  return(render_template("finished.html"))
 
 if __name__ == '__main__':
   port = int(os.environ.get("PORT", 5000))
