@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NavCS - create game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <link rel="shortcut icon" href="{{url_for('static', filename='NavCS_logo_icon.svg')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='all_pages.css')}}">
+    <script>
+      var viewport = document.querySelector("meta[name=viewport]");
+      viewport.setAttribute("content", viewport.content + ", height=" + window.innerHeight);
+    </script>
+  </head>
+  <body onload="set_max_date()" style="background-image:url({{url_for('static', filename='public_domain_map.jpg')}}); background-size: cover; overflow: clip;">
+    <div id="header">
+      <img src="{{url_for('static', filename='NavCS_logo_text.svg')}}">
+      <div>
+        <a href="/">Home</a>
+        <a href="/join">Join</a>
+      </div>
+    </div>
+    <div id="content">
+      <h1>Game finished</h1>
+      <p>See the results below:</p>
+      <ol>
+        <li>Rory Hodgson</li>
+        <li>Dash Drury</li>
+        <li>Dash Eck</li>
+        <li>Luke Campbell</li>
+      </ol>
+    </div>
+    <script src="{{url_for('static', filename='create.js')}}"></script>
+  </body>
+</html>
