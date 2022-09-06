@@ -1,3 +1,19 @@
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
 function orientate(){
   if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(go_to_me);
@@ -48,7 +64,7 @@ function update() {
 }
 
 function communicate(position){
-  let my_id = get_id();
+  let my_id = getCookie("id")
   
   var lat = position.coords.latitude;
   var long = position.coords.longitude;
@@ -87,11 +103,4 @@ function register_catch(){
   const req = new XMLHttpRequest();
   req.open("POST","/register_catch");
   req.send(my_id);
-}
-
-function get_id(){  
-  let cookie = document.cookie;
-  let stage1 = cookie.split(":")[1];
-  let my_id = stage1.substr(0,stage1.length);
-  return(my_id);
 }
