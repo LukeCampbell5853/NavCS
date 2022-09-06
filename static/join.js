@@ -8,9 +8,7 @@ function setCookie(cname,cvalue,exdays) {
 }
 
 function join(){
-  var f_name = document.getElementById("f_name").value;
-  var l_name = document.getElementById("l_name").value;
-  var name = f_name + " " + l_name;
+  var name = document.getElementById("name").value;
   var code = document.getElementById("code").value;
   navigator.geolocation.getCurrentPosition(nothing)
   document.cookie = "id:;";
