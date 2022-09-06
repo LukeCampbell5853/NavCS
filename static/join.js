@@ -38,7 +38,7 @@ function join(){
           message.innerHTML = "An unknown error occured.";
         }else {
           console.log("user logged with id: " + resp);
-          document.cookie = "id:"+resp+";";
+          document.cookie = "id:"+resp+"; path=/";
           window.location.href = "/run";
         }
       }
