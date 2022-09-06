@@ -64,7 +64,8 @@ function update() {
 }
 
 function communicate(position){
-  let my_id = getCookie("id")
+  let my_id = getCookie("id");
+  console.log("user is at [" + my_id + "]");
   
   var lat = position.coords.latitude;
   var long = position.coords.longitude;
