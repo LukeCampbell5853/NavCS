@@ -1,5 +1,12 @@
 function nothing(position){}
 
+function setCookie(cname,cvalue,exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
 function join(){
   var f_name = document.getElementById("f_name").value;
   var l_name = document.getElementById("l_name").value;
@@ -38,7 +45,7 @@ function join(){
           message.innerHTML = "An unknown error occured.";
         }else {
           console.log("user logged with id: " + resp);
-          document.cookie = "id:"+resp+";";
+          setCookie("id",resp,1);
           window.location.href = "/run";
         }
       }
