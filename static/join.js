@@ -13,7 +13,7 @@ function join(){
   navigator.geolocation.getCurrentPosition(nothing)
   document.cookie = "id:;";
   
-  if (f_name == "" || code == ""){
+  if (name == "" || code == ""){
     document.getElementById("message").innerHTML = "Please fill in all required fields."
   } else if (!(navigator.cookieEnabled)){
     message.innerHTML = "Please enable cookies to play.";
