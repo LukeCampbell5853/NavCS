@@ -64,7 +64,18 @@ function update() {
 }
 
 function communicate(position){
-  let my_id = getCookie("id");
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  let my_id = "";
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      my_id = c.substring(3, c.length);
+    }
+  }
   console.log("user is at [" + my_id + "]");
   
   var lat = position.coords.latitude;
