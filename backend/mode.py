@@ -39,6 +39,10 @@ class HaS:
         for seeker in self.seekers:
           seeker = data.player(seeker)
           seeker.update(targets=self.hiders)
+        for hider in self.hiders:
+          hider = data.player(hider)
+          points = hider.score + 1
+          hider.update(score=points)
       else:
         self.hiders = self.seekers
         self.seekers = [self.player.code]
@@ -92,11 +96,12 @@ class Tag:
     for chaser in me.chasers:
       player = data.player(chaser)
       new_target = self.ids[randint(0,len(self.players)-1)]
+      points = player.score
       timeout = 0
       while (new_target == chaser or new_target == data.player(chaser).targets[0]) and timeout < 10:
         new_target = self.ids[randint(0,len(self.players)-1)]
         timeout += 1
-      player.update(targets=[new_target])
+      player.update(targets=[new_target],score=points)
   
   def get_info(self):
     objects = []
