@@ -165,6 +165,7 @@ br{
 .topfixed{
   position:fixed;
   top:0;
+  z-index:1;
 }
 
 .topspacer{
