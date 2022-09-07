@@ -1,19 +1,3 @@
-function getCookie(cname) {
-  let name = cname + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-  for(let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
 function orientate(){
   if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(go_to_me);
@@ -64,20 +48,7 @@ function update() {
 }
 
 function communicate(position){
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-  let my_id = "";
-  for(let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      my_id = c.substring(3, c.length);
-    }
-  }
-  console.log("user is at [" + my_id + "]");
-  
+  my_id = get_id();
   var lat = position.coords.latitude;
   var long = position.coords.longitude;
   const my_data = [lat,long,my_id];
@@ -115,4 +86,20 @@ function register_catch(){
   const req = new XMLHttpRequest();
   req.open("POST","/register_catch");
   req.send(my_id);
+}
+
+function get_id(){  
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let whole = decodedCookie.split(';');
+  let my_id = "";
+  for(let i = 0; i < whole.length; i++) {
+    let sect = whole[i];
+    while (sect.charAt(0) == ' ') {
+      sect = sect.substring(1);
+    }
+    if (sect.indexOf(name) == 0) {
+      my_id = sect.substring(3, sect.length);
+    }
+  }
+  return(my_id)
 }
