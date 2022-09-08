@@ -55,24 +55,3 @@ def register_catch(id):
     elif game.mode == "Tag":
       program = mode.Tag(me,game)
     program.adjust_targets()
-
-def get_scores():
-  ranks = []
-  for player in data.all_players():
-    new_ranks = []
-    player = data.player(player)
-    inserted = False
-    for rank in ranks:
-      name,score = rank
-      if score > player.score or inserted:
-        new_ranks.append((name,score))
-      else:
-        new_ranks.append((player.name,player.score))
-        new_ranks.append((name,score))
-        inserted = True
-    ranks = new_ranks
-  obj = {"names":[],"scores":[]}
-  for rank in ranks:
-    obj["names"].append(rank[0])
-    obj["scores"].append(rank[1])
-  return(obj)
