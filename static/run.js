@@ -35,67 +35,67 @@ function change_stage(num){
 }
 
 function update() {
-  change_state(1);
+  change_stage(1);
   const message = document.getElementById("state_message");
   const link = document.getElementById("register_catch_button");
   cookie = document.cookie;
   
   if (navigator.geolocation && cookie != ""){
-    change_state(2);
+    change_stage(2);
     navigator.geolocation.getCurrentPosition(communicate);
     link.innerHTML = "I got caught.";
   } else if (navigator.geolocation) { 
     console.warn("user not yet logged in");
     link.style.display = "none";
     message.innerHTML = "Your login details were not found.";
-    change_state("end");
+    change_stage("end");
   } else{
     console.warn("nav unavaliable");
     link.innerHTML = "";
     message.innerHTML = "Please allow GPS to play";
-    change_state("end");
+    change_stage("end");
   }
 }
 
 function communicate(position){
-  change_state(3);
+  change_stage(3);
   my_id = get_id();
   var lat = position.coords.latitude;
   var long = position.coords.longitude;
   const my_data = [lat,long,my_id];
 
   const req = new XMLHttpRequest();
-  change_state(4);
+  change_stage(4);
   req.open("POST","/update_state");
-  change_state(5);
+  change_stage(5);
   req.onreadystatechange = function(res){
     if (req.readyState == 4 && req.status == 200){
-      change_state(6);
+      change_stage(6);
       var data = req.response;
       if (data == "1"){
         document.getElementById("state_message").innerHTML = "Game not found.";
-        change_state("end");
+        change_stage("end");
       } else if (data == "2"){
         document.getElementById("state_message").innerHTML = "Waiting for game to start...";
-        change_state("end");
+        change_stage("end");
       } else if (data == "3"){
         console.log("game finished, relocating");
         window.location.href = "/finished";
       } else {
-        change_state(7);
+        change_stage(7);
         const obj = JSON.parse(data);
         console.log(obj);
         document.getElementById("state_message").innerHTML = obj.msg;
-        change_state(8);
+        change_stage(8);
         clear_map();
         add_marker(lat,long,"me","green");
         plot_all(obj.players);
-        change_state("end");
+        change_stage("end");
       }
     }
   }
   req.send(my_data);
-  change_state(5);
+  change_stage(5);
 }
 
 function register_catch(){
