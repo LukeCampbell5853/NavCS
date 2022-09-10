@@ -19,7 +19,6 @@ function add_marker(lat,long,text,colour){
 function plot_all(data){
   for (let i = 0; i < data.length; i++) {
     let player = data[i];
-    console.log("chasing " + player.name + " at " + player.lat + ", " + player.long + ".");
     add_marker(player.lat,player.long,player.name,"red");
   }
 }
@@ -31,7 +30,6 @@ function clear_map(){
 function change_stage(num){
   stage = "{cutout at stage [" + num + "]}";
   document.getElementById("stage_indicator").innerHTML = stage;
-  console.log("at stage " + num);
 }
 
 function update() {
@@ -79,12 +77,10 @@ function communicate(position){
         document.getElementById("state_message").innerHTML = "Waiting for game to start...";
         change_stage("end");
       } else if (data == "3"){
-        console.log("game finished, relocating");
         window.location.href = "/finished";
       } else {
         change_stage(7);
         const obj = JSON.parse(data);
-        console.log(obj);
         document.getElementById("state_message").innerHTML = obj.msg;
         change_stage(8);
         clear_map();
@@ -117,10 +113,7 @@ function showError(error){
 }
 
 function register_catch(){
-  console.log("registering catch");
   let my_id = get_id();
-  console.log("id: " + my_id);
-  
   const req = new XMLHttpRequest();
   req.open("POST","/register_catch");
   req.send(my_id);
@@ -139,5 +132,6 @@ function get_id(){
       my_id = sect.substring(3, sect.length);
     }
   }
+  console.log("user id: " + my_id);
   return(my_id)
 }
