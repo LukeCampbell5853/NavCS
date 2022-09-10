@@ -42,7 +42,7 @@ function update() {
   
   if (navigator.geolocation && cookie != ""){
     change_stage(2);
-    navigator.geolocation.getCurrentPosition(communicate);
+    navigator.geolocation.getCurrentPosition(communicate,showError);
     link.innerHTML = "I got caught.";
   } else if (navigator.geolocation) { 
     console.warn("user not yet logged in");
@@ -96,6 +96,24 @@ function communicate(position){
   }
   req.send(my_data);
   change_stage(5);
+}
+
+function showError(error){
+  change_state("end");
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      document.getElementById("state_message").innerHTML = "User denied the request for Geolocation."
+      break;
+    case error.POSITION_UNAVAILABLE:
+      document.getElementById("state_message").innerHTML = "Location information is unavailable."
+      break;
+    case error.TIMEOUT:
+      document.getElementById("state_message").innerHTML = "The request to get user location timed out."
+      break;
+    case error.UNKNOWN_ERROR:
+      document.getElementById("state_message").innerHTML = "An unknown error occurred."
+      break;
+  }
 }
 
 function register_catch(){
