@@ -99,16 +99,16 @@ function communicate(position){
 }
 
 function showError(error){
-  change_state("end");
+  change_stage("end");
   switch(error.code) {
     case error.PERMISSION_DENIED:
-      document.getElementById("state_message").innerHTML = "User denied the request for Geolocation."
+      document.getElementById("state_message").innerHTML = "Please allow location services access to play."
       break;
     case error.POSITION_UNAVAILABLE:
-      document.getElementById("state_message").innerHTML = "Location information is unavailable."
+      document.getElementById("state_message").innerHTML = "There was an issue with your location services."
       break;
     case error.TIMEOUT:
-      document.getElementById("state_message").innerHTML = "The request to get user location timed out."
+      document.getElementById("state_message").innerHTML = "Location services took too long to respond."
       break;
     case error.UNKNOWN_ERROR:
       document.getElementById("state_message").innerHTML = "An unknown error occurred."
