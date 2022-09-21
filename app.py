@@ -73,7 +73,8 @@ def register_catch():
 @app.route("/finished")
 
 def finished():
-  content = process.top_players()
+  id = str(request.data).strip("b").strip("'")
+  content = process.top_players(id)
   
   return(render_template("finished.html",content=content))
 
