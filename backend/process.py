@@ -54,3 +54,8 @@ def register_catch(id):
     elif game.mode == "Tag":
       program = mode.Tag(me,game)
     program.adjust_targets()
+
+def top_players(id):
+  me = data.player(id)
+  game = data.game(me.game)
+  
