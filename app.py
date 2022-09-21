@@ -74,7 +74,7 @@ def register_catch():
 
 def finished():
   id = str(request.data).strip("b").strip("'")
-  content = process.top_players(id)
+  content = process.list_constructor(id)
   
   return(render_template("finished.html",content=content))
 
