@@ -56,3 +56,16 @@ def register_catch(id):
     elif game.mode == "Tag":
       program = mode.Tag(me,game)
     program.adjust_targets()
+
+def list_constructor(id):
+  me = data.player(id)
+  game = data.game(me.game)
+  players = []
+  for player in game.players:
+    players.append(data.player(player))
+  players = [player.name for player in sorted(players, key=lambda player:player.score)]
+  string = "<ol>"
+  for player in players:
+    string += ("<li>" + player + "</li>")
+  string += "</ol>"
+  return(string)
