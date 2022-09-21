@@ -73,7 +73,9 @@ def register_catch():
 @app.route("/finished")
 
 def finished():
-  return(render_template("finished.html"))
+  content = process.top_players()
+  
+  return(render_template("finished.html",content=content))
 
 if __name__ == '__main__':
   port = int(os.environ.get("PORT", 5000))
