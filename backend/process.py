@@ -48,6 +48,7 @@ def update(Ilat,Ilong,id):
 
 def register_catch(id):
   me = data.player(id)
+  me.update(score=(me.score+1))
   game = data.game(me.game)
   if game.started and not game.finished:
     if game.mode == "HaS":
