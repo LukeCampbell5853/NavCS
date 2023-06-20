@@ -1,4 +1,6 @@
 # NavCS
+*https://navcs.pythonanywhere.com*
+
 Welcome to the NavCS Github repository!
 
 NavCS is a system which utilises GPS to provide a platform for navigation games, from hide and seek around the neighbourhood with the kids to city-wide games of tag, and everything in between. The system is minimalist and to allow the users to have the freedom to do anything, anywhere.
